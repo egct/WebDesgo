@@ -1,0 +1,208 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06/02/2020, 11:59:21
+    Author     : egct
+*/
+.contenedorP {
+    width: 100%;
+    margin: auto;
+    background: #314559;
+    color: #ffffff;
+    padding: 12% 15px 2% 50px;
+    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+.partes{
+    width: 100%;
+    margin: auto;
+    background: #ffffff;
+    color: #000000;
+    padding: 2% 15px 2% 50px;
+    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+
+.imagePerfil{
+    width: 23%; 
+    height: 23%; 
+}
+
+.tablasP{
+    width: 50%;
+    font-family: arial;
+    font-size: 120%;
+}
+
+.tablasPersonas{
+    width: 100%;
+    font-family: arial;
+    font-size: 120%;
+    overflow: scroll;
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+}
+.botonAdd{
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 100%;
+    color: #006505;
+    background-color: #82b085;
+}
+.botonAdd:hover{
+    opacity: 0.6;
+    text-decoration: none;
+}
+.botonDelete{
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 100%;
+    color: #AD0606;
+    background-color: #DF7070;
+}
+.botonDelete:hover{
+    opacity: 0.6;
+    text-decoration: none;
+}
+.botonUpdate{
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 100%;
+    color: #0885D3;
+    background-color: #61ADDC;
+}
+.botonUpdate:hover{
+    opacity: 0.6;
+    text-decoration: none;
+}
+.firsc{
+    width: 80%;
+    font-family: arial;
+    font-weight: bold;
+}
+/*Modales*/
+.modal-contenido{
+    background-color:#ffffff;
+    width:50%;
+    padding: 10px 20px;
+    margin: 20% auto;
+    position: relative;
+    color:#000000;
+    
+}
+.modal{
+    background-color: rgba(0,0,0,.8);
+    position: fixed;
+    top:-40%;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity:0;
+    pointer-events:none;
+    transition: all 1s;
+        overflow: scroll;
+
+}
+#miModalAddP:target, #miModalDeleteP:target{
+    opacity:1;
+    pointer-events:auto;
+}
+
+#miModalUpdateP:target{
+    opacity:1; 
+    pointer-events:auto;
+}
+
+#miModalAddU:target, #miModalDeleteU:target{
+    opacity:1;
+    pointer-events:auto;
+}
+
+#miModalUpdateU:target{
+    opacity:1; 
+    pointer-events:auto;
+}
+
+/*****form del modal*******/
+.cssinput[type=text], .cssselect {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.cssinput[type=number],.cssinput[type=email]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.cssinput[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cssinputC[type=submit] {
+  width: 100%;
+  background-color: #AD0606;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cssinput[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.cssdiv {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.botoncerrar {
+  font-weight: bold;
+  font-size: 115%;
+  font-family: "Arial";
+  text-shadow: 0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,1),
+               0 0 5px rgba(0,0,0,1),
+               0 1px 3px rgba(0,0,0,1),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,1),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,1);
+  color: #FFF;
+  text-align: center;
+}

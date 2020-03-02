@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05/02/2020, 13:24:05
+    Author     : egct
+*/
+
+.contenedor{
+    width: 100%;
+    margin: auto;
+    background: #314559;
+    color: #ffffff;
+    padding: 12% 15px 2% 50px;
+    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+
+.contenedor .titulo{
+    font-size: 3.5ex;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#pestanas {
+    float: top;
+    font-size: 3ex;
+}
+
+#pestanas ul{
+    margin-left: -40px;    
+}
+
+#pestanas li{
+    list-style-type: none;
+    float: left;
+    margin: 0px 2px -2px -0px;
+    background: darkgrey;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: dimgray;
+    padding: 0px 20px 0px 20px;
+}
+
+#pestanas a:link{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 80%;
+}
+
+#contenidopestanas{
+    clear: both;  
+    background: dimgray;
+    padding: 20px 0px 20px 20px;
+    border-top-left-radius: 0px;
+    width: 100%;
+}

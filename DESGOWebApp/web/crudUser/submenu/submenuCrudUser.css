@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05/02/2020, 14:41:44
+    Author     : egct
+*/
+
+.contenedorSubmenuRoles{
+    width: 100%;
+    margin: auto;
+    background: #395876;
+    color: #ffffff;
+    padding: 1% 15px 2% 50px;
+    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+.contenedorSubmenuPersonas{
+    width: 100%;
+    margin: auto;
+    background: #627F9A;
+    color: #ffffff;
+    padding: 1% 15px 2% 50px;
+    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+.contenedorSubmenuUsuarios{
+    width: 100%;
+    margin: auto;
+    background: #7D96AE;
+    color: #ffffff;
+    padding: 1% 15px 2% 50px;
+    box-shadow: 0 10px 10px 0px rgba(0, 0, 0, 0.8);
+}
+.contenedorSubmenuRoles .tituloSubmenuRoles, .contenedorSubmenuPersonas .tituloSubmenuPersonas, .contenedorSubmenuUsuarios .tituloSubmenuUsuarios {
+    font-size: 3.5ex;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#pestanasSubmenuRoles, #pestanasSubmenuPersonas,#pestanasSubmenuUsuarios {
+    float: top;
+    font-size: 3ex;
+    
+}
+#pestanasSubmenuRoles ul, #pestanasSubmenuPersonas ul, #pestanasSubmenuUsuarios ul{
+    margin-left: -40px;
+}
+
+#pestanasSubmenuRoles li, #pestanasSubmenuPersonas li, #pestanasSubmenuUsuarios li{
+    list-style-type: none;
+    float: left;
+    margin: 0px 2px -2px -0px;
+    background: darkgrey;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: dimgray;
+    padding: 0px 20px 0px 20px;
+}
+
+#pestanasSubmenuPersonas a:link, #pestanasSubmenuRoles a:link, #pestanasSubmenuUsuarios a:link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 80%;
+}
+
+#contenidopestanasSubmenuRoles, #contenidopestanasSubmenuPersonas, #contenidopestanasSubmenuUsuarios {
+    clear: both;
+    background: dimgray;
+    padding: 20px;
+    width: 100%;
+    height: 800px;
+}

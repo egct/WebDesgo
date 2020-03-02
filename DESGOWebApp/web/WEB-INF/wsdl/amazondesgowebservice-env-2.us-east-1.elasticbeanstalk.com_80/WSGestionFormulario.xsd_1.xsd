@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.0 (wsit240-7e98ff4; 2017-08-03T21:19:54+0200) JAXWS-RI/2.3.0 JAXWS-API/2.3.0 JAXB-RI/2.3.0 JAXB-API/2.3.0 svn-revision#unknown. --><xs:schema xmlns:tns="http://servicios.desgo.com.ec/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servicios.desgo.com.ec/">
+
+<xs:element name="addEconomia" type="tns:addEconomia"/>
+
+<xs:element name="addEconomiaResponse" type="tns:addEconomiaResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="testerAcabados" type="tns:testerAcabados"/>
+
+<xs:element name="testerAcabadosResponse" type="tns:testerAcabadosResponse"/>
+
+<xs:complexType name="addEconomia">
+<xs:sequence>
+<xs:element name="economia" type="tns:economiaLote" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="economiaLote">
+<xs:sequence>
+<xs:element name="AVALUOCON_ELOTE" type="xs:float"/>
+<xs:element name="AVALUOTIERRA_ELOTE" type="xs:float"/>
+<xs:element name="AVALUOTOTAL_ELOTE" type="xs:float"/>
+<xs:element name="ID_ELOTE" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addEconomiaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="testerAcabados">
+<xs:sequence>
+<xs:element name="tipo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="testerAcabadosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:acabadosEC" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="acabadosEC">
+<xs:sequence>
+<xs:element name="ELRMINACIONEXCRETAS_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="ENERGIAELECTRICAP_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="ID_AC" type="xs:int" minOccurs="0"/>
+<xs:element name="PISO_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="PUERTAS_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="REVESTIMIENTOCUBIERTA_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="REVESTIMIENTOPARED_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="TIPOACABADO_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="TUMBADO_AC" type="xs:string" minOccurs="0"/>
+<xs:element name="VENTANA_AC" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
