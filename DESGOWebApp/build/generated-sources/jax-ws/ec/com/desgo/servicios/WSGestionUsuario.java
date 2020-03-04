@@ -45,6 +45,21 @@ public interface WSGestionUsuario {
 
     /**
      * 
+     * @param iduser
+     * @return
+     *     returns ec.com.desgo.servicios.User
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "buscarPersona", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.BuscarPersona")
+    @ResponseWrapper(localName = "buscarPersonaResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.BuscarPersonaResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/buscarPersonaRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/buscarPersonaResponse")
+    public User buscarPersona(
+        @WebParam(name = "iduser", targetNamespace = "")
+        int iduser);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<ec.com.desgo.servicios.TipoUsuario>
      */
@@ -240,20 +255,5 @@ public interface WSGestionUsuario {
     public Boolean registrarUser(
         @WebParam(name = "user", targetNamespace = "")
         User user);
-
-    /**
-     * 
-     * @param iduser
-     * @return
-     *     returns ec.com.desgo.servicios.User
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "buscarPersona", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.BuscarPersona")
-    @ResponseWrapper(localName = "buscarPersonaResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.BuscarPersonaResponse")
-    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/buscarPersonaRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/buscarPersonaResponse")
-    public User buscarPersona(
-        @WebParam(name = "iduser", targetNamespace = "")
-        int iduser);
 
 }

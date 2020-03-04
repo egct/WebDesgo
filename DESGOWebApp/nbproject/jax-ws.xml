@@ -3,8 +3,8 @@
   <services/>
   <clients>
     <client name="WSGestionUsuario">
-      <wsdl-url>http://amazondesgowebservice-env-2.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl</wsdl-url>
-      <local-wsdl-file>amazondesgowebservice-env-2.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.wsdl</local-wsdl-file>
+      <wsdl-url>http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl</wsdl-url>
+      <local-wsdl-file>amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.wsdl</local-wsdl-file>
       <package-name>ec.com.desgo.servicios</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://amazondesgowebservice-env-2.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
@@ -35,8 +35,8 @@
       </wsimport-options>
     </client>
     <client name="WSGestionFormulario">
-      <wsdl-url>http://amazondesgowebservice-env-2.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl</wsdl-url>
-      <local-wsdl-file>amazondesgowebservice-env-2.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl</local-wsdl-file>
+      <wsdl-url>http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl</wsdl-url>
+      <local-wsdl-file>amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl</local-wsdl-file>
       <package-name>ec.com.desgo.servicios</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -54,7 +54,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://amazondesgowebservice-env-2.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
