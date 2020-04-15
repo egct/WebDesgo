@@ -88,5 +88,11 @@ public class FormService {
         ec.com.desgo.servicios.WSGestionFormulario port = service.getWSGestionFormularioPort();
         return port.asigUserFormulario(idUser, idForm);
     }
+
+    public boolean eliminarFormulario(java.lang.String codigo, ec.com.desgo.servicios.User user) {
+        ec.com.desgo.servicios.WSGestionFormulario_Service service = new ec.com.desgo.servicios.WSGestionFormulario_Service();
+        ec.com.desgo.servicios.WSGestionFormulario port = service.getWSGestionFormularioPort();
+        return port.eliminarFormulario(codigo, user);
+    }
     
 }

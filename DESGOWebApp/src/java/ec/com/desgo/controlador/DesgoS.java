@@ -392,11 +392,35 @@ public class DesgoS extends HttpServlet {
                     request.setAttribute("name", n);
                     request.setAttribute("empresa", em);
                     request.setAttribute("tipo", t);
-                    
-                    String usuarioAsignado= request.getParameter("UUF_Id");
+
+                    String usuarioAsignado = request.getParameter("UUF_Id");
                     String[] formulariosAsignados = request.getParameterValues("formulariosAsignar");
                     for (int i = 0; i < formulariosAsignados.length; i++) {
-                        formS.asigUserFormulario(Integer.parseInt(usuarioAsignado),Integer.parseInt(formulariosAsignados[i]));
+                        formS.asigUserFormulario(Integer.parseInt(usuarioAsignado), Integer.parseInt(formulariosAsignados[i]));
+                    }
+                    acceso = "AsignarFormularioAdministrador.jsp";
+                    break;
+                /**
+                 * *Eliminar formularios
+                 */
+                case "cc5efbcf967a47f4fcf30f96a09801a19c879960e691d024c50f7c3130451adf":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+                    User usFormulario = new User();
+                    String delimiter = "-";
+                    String[] formulariosEliminar = request.getParameterValues("formulariosEliminar");
+                    for (int i = 0; i < formulariosEliminar.length; i++) {
+                        String[] all = formulariosEliminar[i].split(delimiter);
+                        String codigoFormulario = all[0];
+                        String idUs = all[1];
+                        usFormulario.setIDUSUARIO(Integer.parseInt(idUs));
+                        formS.eliminarFormulario(codigoFormulario, usFormulario);
                     }
                     acceso = "AsignarFormularioAdministrador.jsp";
                     break;
@@ -502,7 +526,7 @@ public class DesgoS extends HttpServlet {
 
                     acceso = "formularioUsuario.jsp";
                     break;
-                
+
                 /**
                  * *administradorPersonaCrud:Create***
                  */

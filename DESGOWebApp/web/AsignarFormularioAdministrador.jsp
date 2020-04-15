@@ -258,8 +258,8 @@
                     <div id="cpestana1">
                         <article class="contenedorP" >
                             <article class="partes" > 
-                                <h2>Formularios</h2>
-
+                                <h2>Formularios</h2><br>
+                                <a href="#miModalAddP" class="botonDelete">Eliminar formularios</a>
                                 <center>
                                     <br>
                                     <hr>
@@ -269,19 +269,27 @@
                                             <td hidden="">IDFORMULARIO</td>
                                             <td hidden="">IDUSUARIO</td>
                                             <td><h4>Código</h4></td>
+                                            <td><h4>Estado</h4></td>
                                             <td><h4>Usuario</h4></td>
 
                                         </tr>
                                         <%
                                             FormService formSer = new FormService();
                                             List<HashMapClassForm> data = formSer.listTodosFormIds(e);
+                                            String estadoFormulario = "";
                                             for (HashMapClassForm cus : data) {
+                                                if (cus.getForm().getEstadoF() == 0) {
+                                                    estadoFormulario = "No Actualizado";
+                                                } else {
+                                                    estadoFormulario = "Actualizado";
+                                                }
                                         %>
 
                                         <tr style="align-items: center  ">
                                             <td hidden=""><%=cus.getForm().getIdFormulario()%></td>
                                             <td hidden=""><%=cus.getUs().getIDUSUARIO()%></td>
                                             <td><%=cus.getForm().getCodigoF()%></td>
+                                            <td><%=estadoFormulario%></td>
                                             <td><%=cus.getUs().getUSUARIOUSUARIO()%></td>
                                         </tr>
                                         <%}%>
@@ -359,180 +367,50 @@
         <div id="miModalAddP" class="modal">
             <div class="modal-contenido">
                 <a class="botoncerrar" href="#" style="">X</a>
-                <center><h2>Ingrese los datos</h2></center>
+                <center><h2>Seleccione los formularios</h2></center>
 
                 <div class="cssdiv">
-                    <form action="DesgoS?a=2b8e1048771e181884a26e269baef21eb17ec74fc3670d7cad1cb5f3e9af4e5a" method="post">
-                        <input type="hidden" name="idUser" value="<%=id%>">
-                        <input type="hidden" name="name" value="<%=n%>">
-                        <input type="hidden" name="empresa" value="<%=e%>">
-                        <input type="hidden" name="tipo" value="<%=t%>">
-                        <label >Primer Nombre:</label>
-                        <input class="cssinput" type="text" name="R_Pnombre" required>
-                        <label>Segundo Nombre:</label>
-                        <input class="cssinput" type="text" name="R_Snombre"  required>
-                        <label>Primer Apellido:</label>
-                        <input class="cssinput" type="text" name="R_Papellido" required>
-                        <label>Segundo Apellido:</label>
-                        <input class="cssinput" type="text" name="R_Sapellido"  required>
-                        <label>Cédula:</label>
-                        <input class="cssinput" type="number" name="R_cedula" required>
-                        <label>Teléfono:</label>
-                        <input class="cssinput" type="number" name="R_telefono" required>
-                        <label>Correo:</label>
-                        <input class="cssinput" type="email" name="R_email" required>
-                        <label>Cargo:</label>
-                        <input class="cssinput" type="text" name="R_cargo" required>
-                        <label>Profesión:</label>
-                        <input class="cssinput" type="text" name="R_profesion"   required>
-                        <label>Empresa:</label>
-                        <input class="cssinput" type="text" name="R_empresa"  value="<%=e%>" disabled="true">                        
-                        <div>
-                            <input class="cssinput" type="submit" value="Guardar">
-                        </div>
-                    </form>
-                </div>
-            </div>  
-        </div>
-
-        <div id="miModalDeleteP" class="modal">
-            <div class="modal-contenido">
-                <a class="botoncerrar" href="#" style="">X</a>
-                <center><h2>Eliminar Persona</h2></center>
-                <div class="cssdiv">
-                    <form action="DesgoS?a=fd302b95acffc2823c575e932a9733138dbb619e873bbac31618cde1fcc4e184" method="post">
-                        <input type="hidden" name="idUser" value="<%=id%>">
-                        <input type="hidden" name="name" value="<%=n%>">
-                        <input type="hidden" name="empresa" value="<%=e%>">
-                        <input type="hidden" name="tipo" value="<%=t%>">
-                        <center><label>Estas seguro que deseas eliminarlo?</label>
-                        </center>
-                        <br>
-                        <input class="cssinput" type="hidden" name="D_Id" id="D_Id">
-                        <label>Nombre:</label>
-                        <input class="cssinput" type="text" name="D_Pnombre" id="D_Pnombre" disabled="true">
-                        <label>Apellido:</label>
-                        <input class="cssinput" type="text" name="D_Papellido" id="D_Papellido" disabled="true">
-                        <label>Cédula:</label>
-                        <input class="cssinput" type="number" name="D_cedula" id="D_cedula" disabled="true">
-                        <div>
-                            <input class="cssinput" type="submit" value="Eliminar">
-                        </div>
-                    </form>
-                </div>
-            </div>  
-        </div>
-
-        <div id="miModalUpdateP" class="modal">
-            <div class="modal-contenido">
-                <a class="botoncerrar" href="#" style="">X</a>
-                <center><h2>Modifique los datos</h2></center>
-                <div class="cssdiv">
-                    <form action="DesgoS?a=62cc030121d538da6e06096bf090f352d0e68276291763c52b8ec65296be716e" method="post">
+                    <form action="DesgoS?a=cc5efbcf967a47f4fcf30f96a09801a19c879960e691d024c50f7c3130451adf" method="post">
                         <input type="hidden" name="idUser" value="<%=id%>">
                         <input type="hidden" name="name" value="<%=n%>">
                         <input type="hidden" name="empresa" value="<%=e%>">
                         <input type="hidden" name="tipo" value="<%=t%>">
                         <br>
-                        <input class="cssinput" type="hidden" name="U_Id" id="U_Id">
-                        <label>Primer Nombre:</label>
-                        <input class="cssinput" type="text" name="U_Pnombre" id="U_Pnombre">
-                        <label>Segundo Nombre:</label>
-                        <input class="cssinput" type="text" name="U_Snombre" id="U_Snombre" >
-                        <label>Primer Apellido:</label>
-                        <input class="cssinput" type="text" name="U_Papellido" id="U_Papellido">
-                        <label>Segundo Apellido:</label>
-                        <input class="cssinput" type="text" name="U_Sapellido" id="U_Sapellido" >
-                        <label>Cédula:</label>
-                        <input class="cssinput" type="number" name="U_cedula" id="U_cedula">
-                        <label>Teléfono:</label>
-                        <input class="cssinput" type="number" name="U_telefono" id="U_telefono" >
-                        <label>Correo:</label>
-                        <input class="cssinput" type="email" name="U_email" id="U_email" >
-                        <label>Cargo:</label>
-                        <input class="cssinput" type="text" name="U_cargo" id="U_cargo">
-                        <label>Profesión:</label>
-                        <input class="cssinput" type="text" name="U_profesion" id="U_profesion"  >
-                        <label>Empresa:</label>
-                        <input class="cssinput" type="text" name="U_empresa" id="U_empresa"  value="<%=e%>" disabled="true">                        
-                        <div>
-                            <input class="cssinput" type="submit" value="Actualizar">
-                        </div>
-                    </form>
-                </div>
-            </div>  
-        </div>
+                        <label style="color: #c80000">El usuario <b><%=n%></b> de la empresa <b><%=e%></b> sera el responsable de la eliminación de los formularios.</label>
+                        <br><br>
+                        <table class="tablasP" style="align-items: center  ">                                           
+                            <div>
+                                <input type="checkbox" onclick="marcar(this);"/><label><b>&nbsp;Marcar/Desmarcar Todos</b></label>    
+                            </div>
+                            <br><br> 
+                            <tr>
+                                <td><h4></h4></td>
+                                <td><h4>Código</h4></td>
+                                <td><h4>Estado</h4></td>
+                                <td><h4>Usuario</h4></td>
 
-        <div id="miModalAddU" class="modal">
-            <div class="modal-contenido">
-                <a class="botoncerrar" href="#" style="">X</a>
-                <center><h2>Ingrese los formularios</h2></center>
-                <div class="cssdiv">
-                    <form action="DesgoS?a=6d0ce3439eaf154b505d675e220b06eacd30fb8cb2a5ecbfb52437e3493da448" method="post">
-                        <input type="hidden" name="idUser" value="<%=id%>">
-                        <input type="hidden" name="name" value="<%=n%>">
-                        <input type="hidden" name="empresa" value="<%=e%>">
-                        <input type="hidden" name="tipo" value="<%=t%>">
-                        <label>Persona:</label>
-                        <select class="cssinput" type="text" name="RU_Persona" required>
-                            <option value="-1">Seleccione una persona</option>
+                            </tr>
                             <%
-                                UserService rolesSUParaUser = new UserService();
-                                List<Persona> listPersonasParaUser = rolesSUParaUser.listarPersonas(Integer.parseInt(id));
-                                for (Persona cusUs : listPersonasParaUser) {
+                                List<HashMapClassForm> dataDeleteForm = formSer.listTodosFormIds(e);
+                                String estadoFormularioA = "";
+                                for (HashMapClassForm cus : dataDeleteForm) {
+                                    if (cus.getForm().getEstadoF() == 0) {
+                                        estadoFormularioA = "No Actualizado";
+                                    } else {
+                                        estadoFormularioA = "Actualizado";
+                                    }
                             %>
-                            <option value="<%=cusUs.getIDPERSONA()%>"><%=cusUs.getPNOMBREPERSONA()%> <%=cusUs.getPAPELLIDOPERSONA()%></option>
+                            <tr style="align-items: center  ">
+                                <td><input type="checkbox" name="formulariosEliminar" value="<%=cus.getForm().getCodigoF() + "-" + cus.getUs().getIDUSUARIO()%>"></td>
+                                <td><label for="formulariosEliminar"> <%=cus.getForm().getCodigoF()%>&nbsp;</label></td>
+                                <td><label for="formulariosEliminar"> <%=estadoFormularioA%>&nbsp;</label></td>
+                                <td><label for="formulariosEliminar"> <%=cus.getUs().getUSUARIOUSUARIO()%></label></td>
+                            </tr>
                             <%}%>
-                        </select>
-                        <label>Usuario:</label>
-                        <input class="cssinput" type="text" name="RU_Usuario" required>
-                        <label>Contraseña:</label>
-                        <input class="cssinput" type="text" name="RU_Contra"  required>
-                        <label>Tipo usuario:</label>
-                        <select class="cssinput" type="text" name="RU_TipoUsuario" required>
-                            <option value="-1">Seleccione una tipo de usuario</option>
-                            <%
-                                UserService rolesSU = new UserService();
-                                List<TipoUsuario> dataU = rolesSU.listarRoles();
-                                for (TipoUsuario cusUs : dataU) {
-                            %>
-                            <option value="<%=cusUs.getIDTIPOUSUARIO()%>"><%=cusUs.getNIVELTIPOUSUARIO()%></option>
-                            <% }%>
-                        </select>
-                        <label>Empresa:</label>
-                        <input class="cssinput" type="text" name="RU_Empresa" id="RU_Empresa"  value="<%=e%>" disabled="true">                        
-                        <div>
-                            <input class="cssinput" type="submit" value="Guardar">
-                        </div>
-                    </form>
-                </div>
-            </div>  
-        </div>
-
-        <div id="miModalDeleteU" class="modal">
-            <div class="modal-contenido">
-                <a class="botoncerrar" href="#" style="">X</a>
-                <center><h2>Eliminar Usuario</h2></center>
-                <div class="cssdiv">
-                    <form action="DesgoS?a=980048512dddd10b99f847a23c66344952a2323daa47d0873119d6c444e383e4" method="post">
-                        <input type="hidden" name="idUser" value="<%=id%>">
-                        <input type="hidden" name="name" value="<%=n%>">
-                        <input type="hidden" name="empresa" value="<%=e%>">
-                        <input type="hidden" name="tipo" value="<%=t%>">
-                        <center><label>Estas seguro que deseas eliminarlo?</label>
-                        </center>
-                        <br>
-                        <input class="cssinput" type="hidden" name="DU_Id" id="DU_Id">
-                        <label>Usuario:</label>
-                        <input class="cssinput" type="text" name="DU_Usuario" id="DU_Usuario" disabled="true">
-                        <label>Tipo de usuario:</label>
-                        <input class="cssinput" type="text" name="DU_TipoUsuario" id="DU_TipoUsuario" disabled="true">
-                        <label>Empresa:</label>
-                        <input class="cssinput" type="text" name="DU_Empresa" id="DU_Empresa"  value="<%=e%>" disabled="true">                        
+                        </table>                       
                         <div>
                             <input class="cssinput" type="submit" value="Eliminar">
                         </div>
-
                     </form>
                 </div>
             </div>  
@@ -563,17 +441,24 @@
                             <tr>
                                 <td><h4></h4></td>
                                 <td><h4>Código</h4></td>
+                                <td><h4>Estado</h4></td>
                                 <td><h4>Usuario</h4></td>
 
                             </tr>
                             <%
                                 List<HashMapClassForm> dataUpdateForm = formSer.listTodosFormIds(e);
+                                estadoFormularioA="";
                                 for (HashMapClassForm cus : dataUpdateForm) {
-
+                                    if (cus.getForm().getEstadoF() == 0) {
+                                        estadoFormularioA = "No Actualizado";
+                                    } else {
+                                        estadoFormularioA = "Actualizado";
+                                    }
                             %>
                             <tr style="align-items: center  ">
                                 <td><input type="checkbox" name="formulariosAsignar" value="<%=cus.getForm().getIdFormulario()%>"></td>
                                 <td><label for="formulariosAsignar"> <%=cus.getForm().getCodigoF()%>&nbsp;</label></td>
+                                <td><label for="formulariosAsignar"> <%=estadoFormularioA%>&nbsp;</label></td>
                                 <td><label for="formulariosAsignar"> <%=cus.getUs().getUSUARIOUSUARIO()%></label></td>
                             </tr>
                             <%}%>
@@ -600,36 +485,7 @@
                 console.log(datos);
             }
 
-            function cargarIdPersonaDelete(idEliminar, nEliminar, aEliminar, cEliminar) {
-                document.getElementById('D_Id').value = idEliminar;
-                document.getElementById('D_Pnombre').value = nEliminar;
-                document.getElementById('D_Papellido').value = aEliminar;
-                document.getElementById('D_cedula').value = cEliminar;
-                window.location.href = "#miModalDeleteP";
-            }
-            function cargarIdPersonaUpdate(idActualizar, pnActualizar, snActualizar,
-                    paActualizar, saActualizar, cActualizar,
-                    tActualizar, emActualizar, carActualizar,
-                    proActualizar) {
-                document.getElementById('U_Id').value = idActualizar;
-                document.getElementById('U_Pnombre').value = pnActualizar;
-                document.getElementById('U_Snombre').value = snActualizar;
-                document.getElementById('U_Papellido').value = paActualizar;
-                document.getElementById('U_Sapellido').value = saActualizar;
-                document.getElementById('U_cedula').value = cActualizar;
-                document.getElementById('U_telefono').value = tActualizar;
-                document.getElementById('U_email').value = emActualizar;
-                document.getElementById('U_cargo').value = carActualizar;
-                document.getElementById('U_profesion').value = proActualizar;
-                window.location.href = "#miModalUpdateP";
-            }
 
-            function cargarIdUsuarioDelete(idUEliminar, uEliminar, tuEliminar) {
-                document.getElementById('DU_Id').value = idUEliminar;
-                document.getElementById('DU_Usuario').value = uEliminar;
-                document.getElementById('DU_TipoUsuario').value = tuEliminar;
-                window.location.href = "#miModalDeleteU";
-            }
             function cargarIdUsuarioUpdate(idUActualizar, uActualizar) {
                 document.getElementById('UUF_Id').value = idUActualizar;
                 document.getElementById('UUF_Usuario').value = uActualizar;

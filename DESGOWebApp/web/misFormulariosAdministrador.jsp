@@ -198,14 +198,19 @@
                                                 FormService rolesFS = new FormService();
                                                 List<FormularioIds> listformsId = rolesFS.listarFormulariosId(Integer.parseInt(id));
                                                 int contU = 0;
+                                                String estadoFormulario="";
                                                 for (FormularioIds cus : listformsId) {
-
+                                                     if(cus.getEstadoF()==0){
+                                                         estadoFormulario="No Actualizado";
+                                                     }else{
+                                                         estadoFormulario="Actualizado";
+                                                     }   
                                             %>
                                             <tr id="FF_<%=contU%>">
                                                 <td id="FC_<%=contU%>0" hidden=""><%=cus.getIdFormulario()%></td>
                                                 <td id="FC_<%=contU%>1" hidden=""><%=cus.getIdUsuarioF()%></td>
                                                 <td id="FC_<%=contU%>2"><%=cus.getCodigoF()%></td>
-                                                <td id="FC_<%=contU%>3"><%=cus.getEstadoF()%></td>
+                                                <td id="FC_<%=contU%>3"><%=estadoFormulario%></td>
                                                 <td id="FC_<%=contU%>4">
                                                     <a id="D<%=contU%>">
                                                         <form action="DesgoS?a=2c3279f6b1dce58a4d197fb68d3515bab8f5129a" method="post">
