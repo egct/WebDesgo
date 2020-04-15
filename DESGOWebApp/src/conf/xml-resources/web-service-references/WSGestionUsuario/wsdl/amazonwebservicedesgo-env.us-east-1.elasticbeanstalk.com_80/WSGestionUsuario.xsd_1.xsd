@@ -190,9 +190,13 @@
 <xs:sequence>
 <xs:element name="caracterizacionC_F" type="tns:caracterizacionCF" minOccurs="0"/>
 <xs:element name="caracterizacionL_F" type="tns:caracterizacionLF" minOccurs="0"/>
+<xs:element name="codigo_F" type="xs:int" minOccurs="0"/>
 <xs:element name="economica_F" type="tns:economicaF" minOccurs="0"/>
 <xs:element name="elementosC_F" type="tns:elementosCF" minOccurs="0"/>
+<xs:element name="estado_F" type="xs:int" minOccurs="0"/>
 <xs:element name="graficosP_F" type="tns:graficosPF" minOccurs="0"/>
+<xs:element name="idFormulario" type="xs:int" minOccurs="0"/>
+<xs:element name="idUsuario_F" type="xs:int" minOccurs="0"/>
 <xs:element name="identificacionL_F" type="tns:identificacionLF" minOccurs="0"/>
 <xs:element name="identificacionU_F" type="tns:identificacionUF" minOccurs="0"/>
 <xs:element name="limites_F" type="tns:limitesF" minOccurs="0"/>
@@ -242,6 +246,29 @@
 <xs:element name="ID_DDPLOTE" type="xs:int" minOccurs="0"/>
 <xs:element name="ID_IULOTE" type="xs:int" minOccurs="0"/>
 <xs:element name="NUMEROPREDIO_IULOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="dDescriptivosPredio_IULote" type="tns:dDescriptivosPredioIULote" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dDescriptivosPredioIULote">
+<xs:sequence>
+<xs:element name="ID_DDPLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_DLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="NOMBREEDIFICIO_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NOMBRESECTOR_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="REGIMENTENECIA_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="TIPOPREDIO_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="USOPREDIO_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="dDPLote" type="tns:direccionDDPLote" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="direccionDDPLote">
+<xs:sequence>
+<xs:element name="CALLEP_DLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="ID_DLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="INTERSECCION_DLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NO_DLOTE" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

@@ -7,11 +7,7 @@ package ec.com.desgo.controlador;
 
 import ec.com.desgo.modelo.FormService;
 import ec.com.desgo.modelo.UserService;
-import ec.com.desgo.servicios.Formulario;
-import ec.com.desgo.servicios.IdentificacionUF;
-import ec.com.desgo.servicios.Persona;
-import ec.com.desgo.servicios.TipoUsuario;
-import ec.com.desgo.servicios.User;
+import ec.com.desgo.servicios.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -21,11 +17,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.Date;
+import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.ArrayList;
+import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import com.oreilly.servlet.MultipartRequest;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
+import org.apache.poi.ss.usermodel.DataFormatter;
+
 /**
  *
  * @author egct
  */
 @WebServlet(name = "DesgoS", urlPatterns = {"/DesgoS"})
+@MultipartConfig
 public class DesgoS extends HttpServlet {
 
     /**
@@ -43,6 +62,9 @@ public class DesgoS extends HttpServlet {
     String n;
     String em;
     String t;
+    String IdFormulario;
+    String codigoF;
+    String contexto;
 
     User user = new User();
     User useraux = null;
@@ -53,13 +75,18 @@ public class DesgoS extends HttpServlet {
      */
     Formulario form = new Formulario();
     FormService formS = new FormService();
+    Formulario formN = new Formulario();
+    FormularioIds formIds = new FormularioIds();
+    InicializarNewForm inicializarNewForm = new InicializarNewForm();
+
     //partes
     /**
      *
      */
-
     //Direccion_DDPLote direccion_DDPLote=new Direccion_DDPLote();
     IdentificacionUF identificacionUF = new IdentificacionUF();
+    DDescriptivosPredioIULote dDescriptivosPredioIULote = new DDescriptivosPredioIULote();
+    DireccionDDPLote dDPLote = new DireccionDDPLote();
 
     /**/
     /**
@@ -93,10 +120,16 @@ public class DesgoS extends HttpServlet {
                     n = request.getParameter("name");
                     em = request.getParameter("empresa");
                     t = request.getParameter("tipo");
+                    formIds.setIdFormulario(Integer.parseInt(request.getParameter("IdFormulario")));
+                    formIds.setCodigoF(Integer.parseInt(request.getParameter("codigoF")));
+                    formIds.setIdentificacionUF(Integer.parseInt(request.getParameter("formIds_IU")));
                     request.setAttribute("idUser", id);
                     request.setAttribute("name", n);
                     request.setAttribute("empresa", em);
                     request.setAttribute("tipo", t);
+                    request.setAttribute("IdFormulario", formIds.getIdFormulario());
+                    request.setAttribute("codigoF", formIds.getCodigoF());
+                    request.setAttribute("formIds_IU", formIds.getIdentificacionUF());
                     acceso = "formularioAdministrador.jsp";
                     break;
                 /**
@@ -107,11 +140,45 @@ public class DesgoS extends HttpServlet {
                     n = request.getParameter("name");
                     em = request.getParameter("empresa");
                     t = request.getParameter("tipo");
+                    formIds.setIdFormulario(Integer.parseInt(request.getParameter("IdFormulario")));
+                    formIds.setCodigoF(Integer.parseInt(request.getParameter("codigoF")));
+                    formIds.setIdentificacionUF(Integer.parseInt(request.getParameter("formIds_IU")));
                     request.setAttribute("idUser", id);
                     request.setAttribute("name", n);
                     request.setAttribute("empresa", em);
                     request.setAttribute("tipo", t);
+                    request.setAttribute("IdFormulario", formIds.getIdFormulario());
+                    request.setAttribute("codigoF", formIds.getCodigoF());
+                    request.setAttribute("formIds_IU", formIds.getIdentificacionUF());
                     acceso = "formularioUsuario.jsp";
+                    break;
+                /**
+                 * *Mis Formularios administrador***
+                 */
+                case "3773b45def36f7906ee172a3a88b69a13dd4009a":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+                    acceso = "misFormulariosAdministrador.jsp";
+                    break;
+                /**
+                 * *Mis Formularios Usuario***
+                 */
+                case "30bfa040d6820b49c35db8bff22f0017a13b462e":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+                    acceso = "misFormulariosUsuario.jsp";
                     break;
                 /**
                  * *Ayuda administrador***
@@ -141,6 +208,7 @@ public class DesgoS extends HttpServlet {
                     request.setAttribute("tipo", t);
                     acceso = "ayudaUsuario.jsp";
                     break;
+
                 /**
                  * *Salir***
                  */
@@ -203,6 +271,238 @@ public class DesgoS extends HttpServlet {
                     request.setAttribute("useraux", useraux);
                     acceso = "perfilUsuario.jsp";
                     break;
+                /**
+                 * *Asignar Formulario Administrador***
+                 */
+                case "d65b1910633f1549f818bd804a2f10882ed36026":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+                    acceso = "AsignarFormularioAdministrador.jsp";
+                    break;
+                /**
+                 * *Registrar formularios***
+                 */
+                case "31afc1b5779edc3cbd32844041ecdd2438a95d3a6c11d1587edc484277b18adc":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    contexto = getServletContext().getRealPath("index.jsp");
+                    contexto = contexto.replaceAll("index.jsp", "");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+
+                    //contexto=contexto.
+//
+                    try {
+                        //leer y crear archivo desde jsp y guardar en una ruta relativa 
+                        String nomb = request.getParameter("nombre");
+                        Part arch = request.getPart("input-excel");
+                        InputStream is = arch.getInputStream();
+                        File f = new File(contexto + nomb);
+                        FileOutputStream ous = new FileOutputStream(f);
+                        int dato = is.read();
+                        while (dato != -1) {
+                            ous.write(dato);
+                            dato = is.read();
+                        }
+                        ous.close();
+                        is.close();
+
+                        FormularioIds formu = new FormularioIds();
+                        ArrayList<FormularioIds> listForm = new ArrayList<>();
+                        int contF = 0;
+                        int contC = 0;
+                        DataFormatter formatter = new DataFormatter();
+                        FileInputStream file = new FileInputStream(new File(contexto + nomb));
+                        // leer archivo excel
+                        XSSFWorkbook worbook = new XSSFWorkbook(file);
+                        //obtener la hoja que se va leer
+                        XSSFSheet sheet = worbook.getSheetAt(0);
+                        //obtener todas las filas de la hoja excel
+                        Iterator<Row> rowIterator = sheet.iterator();
+                        Row row;
+                        // se recorre cada fila hasta el final
+                        while (rowIterator.hasNext()) {
+                            row = rowIterator.next();
+                            //se obtiene las celdas por fila
+                            Iterator<Cell> cellIterator = row.cellIterator();
+                            Cell cell;
+                            //se recorre cada celda
+                            if (contF != 0) {
+                                while (cellIterator.hasNext()) {
+                                    // se obtiene la celda en específico y se la imprime
+                                    cell = cellIterator.next();
+                                    System.out.print(formatter.formatCellValue(cell) + " | ");
+                                    if (contC == 0) {
+                                        formu.setCodigoF(Integer.parseUnsignedInt(formatter.formatCellValue(cell)));
+                                    } else if (contC == 1) {
+                                        if (formatter.formatCellValue(cell).equals("true")) {
+                                            formu.setEstadoF(1);
+                                        } else {
+                                            formu.setEstadoF(0);
+                                        }
+                                    }
+                                    contC++;
+                                }
+                                System.out.println();
+                                listForm.add(formu);
+                                formu = new FormularioIds();
+                                contC = 0;
+                            }
+                            contF = -1;
+                        }
+                        //elimino el excel
+                        f.delete();
+                        //
+                        //Inicializa el formulario para registrar en la Base de datos
+                        for (FormularioIds uf : listForm) {
+                            long re = formS.insertarDireccionDDPLote(inicializarNewForm.TypeDireccionDDPLote(dDPLote));
+                            long re2 = formS.insertarDDescriptivosPredioIULote(inicializarNewForm.TypeDDescriptivosPredioIULote(dDescriptivosPredioIULote, (int) re));
+                            long re3 = formS.insertarIdentificacionUF(inicializarNewForm.TypeIdentificacionUF(identificacionUF, (int) re2));
+                            User us = new User();
+                            us.setIDUSUARIO(Integer.parseInt(id));
+                            FormularioIds formIds = new FormularioIds();
+                            formIds.setCodigoF(uf.getCodigoF());
+                            formIds.setEstadoF(uf.getEstadoF());
+                            formIds.setIdUsuarioF(Integer.parseInt(id));
+                            Boolean result = formS.registarFormulario(us, inicializarNewForm.TypeFormId(formIds, (int) re3));
+                        }
+                    } catch (Exception ex) {
+                    }
+                    acceso = "AsignarFormularioAdministrador.jsp";
+                    break;
+                /**
+                 * *Asignar usuario a formulario
+                 */
+                case "a989f832e5e28dd18636e124c281d5f37278a5b96e94f47af200b2d78836e8ff":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+                    
+                    String usuarioAsignado= request.getParameter("UUF_Id");
+                    String[] formulariosAsignados = request.getParameterValues("formulariosAsignar");
+                    for (int i = 0; i < formulariosAsignados.length; i++) {
+                        formS.asigUserFormulario(Integer.parseInt(usuarioAsignado),Integer.parseInt(formulariosAsignados[i]));
+                    }
+                    acceso = "AsignarFormularioAdministrador.jsp";
+                    break;
+                /**
+                 * *Actualizar formulario: Administrador***
+                 */
+                case "1135b4862b8f56a89f2066ecae93d4491a7d218d799189c4612e5d48a71cbbcd":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+
+                    //
+                    Formulario formActualizar = new Formulario();
+                    formActualizar.setIdFormulario(Integer.parseInt(request.getParameter("IdFormulario")));
+
+                    /*
+                    Identificacion Ubicacion
+                     */
+                    DireccionDDPLote dDPLote = new DireccionDDPLote();
+                    dDPLote.setIDDLOTE(Integer.parseInt(request.getParameter("IdDireccion")));
+                    dDPLote.setCALLEPDLOTE(request.getParameter("IU_d_callep"));
+                    dDPLote.setNODLOTE(request.getParameter("IU_d_no"));
+                    dDPLote.setINTERSECCIONDLOTE(request.getParameter("IU_d_inter"));
+
+                    DDescriptivosPredioIULote ddpiul = new DDescriptivosPredioIULote();
+                    ddpiul.setDDPLote(dDPLote);
+                    ddpiul.setIDDDPLOTE(Integer.parseInt(request.getParameter("IdDDescriptivospredio")));
+                    ddpiul.setNOMBRESECTORDDPLOTE(request.getParameter("IU_dd_nsec"));
+                    ddpiul.setNOMBREEDIFICIODDPLOTE(request.getParameter("IU_dd_nedi"));
+                    ddpiul.setUSOPREDIODDPLOTE(request.getParameter("IU_dd_usop"));
+                    ddpiul.setTIPOPREDIODDPLOTE("Rural");
+                    ddpiul.setREGIMENTENECIADDPLOTE("Unipropiedad");
+
+                    IdentificacionUF iuf = new IdentificacionUF();
+                    iuf.setDDescriptivosPredioIULote(ddpiul);
+                    iuf.setIDIULOTE(Integer.parseInt(request.getParameter("IdFormulario_IU")));
+                    iuf.setCLAVECATASTRALANTIGUOIULOTE(request.getParameter("IU_cca_pro1"));
+                    iuf.setCLAVECATASTRALNUEVOIULOTE(request.getParameter("IU_ccu"));
+                    iuf.setNUMEROPREDIOIULOTE(request.getParameter("IU_np"));
+
+                    formActualizar.setIdentificacionUF(iuf);
+                    formActualizar.setCodigoF(Integer.parseInt(request.getParameter("codigoF")));
+                    formActualizar.setIdUsuarioF(Integer.parseInt(request.getParameter("idUser")));
+                    formActualizar.setEstadoF(1);
+
+                    formS.editarformulario(formActualizar);
+
+                    acceso = "formularioAdministrador.jsp";
+                    break;
+                /**
+                 * *Actualizar formulario: Usuario***
+                 */
+                case "68adb34bce0e3a1dba5c25b1ce3e0d307b62352d81fa508c668965f8083ba68e":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+
+                    //
+                    Formulario formActualizarU = new Formulario();
+                    formActualizarU.setIdFormulario(Integer.parseInt(request.getParameter("IdFormulario")));
+
+                    /*
+                    Identificacion Ubicacion
+                     */
+                    DireccionDDPLote dDPLoteU = new DireccionDDPLote();
+                    dDPLoteU.setIDDLOTE(Integer.parseInt(request.getParameter("IdDireccion")));
+                    dDPLoteU.setCALLEPDLOTE(request.getParameter("IU_d_callep"));
+                    dDPLoteU.setNODLOTE(request.getParameter("IU_d_no"));
+                    dDPLoteU.setINTERSECCIONDLOTE(request.getParameter("IU_d_inter"));
+
+                    DDescriptivosPredioIULote ddpiulU = new DDescriptivosPredioIULote();
+                    ddpiulU.setDDPLote(dDPLoteU);
+                    ddpiulU.setIDDDPLOTE(Integer.parseInt(request.getParameter("IdDDescriptivospredio")));
+                    ddpiulU.setNOMBRESECTORDDPLOTE(request.getParameter("IU_dd_nsec"));
+                    ddpiulU.setNOMBREEDIFICIODDPLOTE(request.getParameter("IU_dd_nedi"));
+                    ddpiulU.setUSOPREDIODDPLOTE(request.getParameter("IU_dd_usop"));
+                    ddpiulU.setTIPOPREDIODDPLOTE("Rural");
+                    ddpiulU.setREGIMENTENECIADDPLOTE("Unipropiedad");
+
+                    IdentificacionUF iufU = new IdentificacionUF();
+                    iufU.setDDescriptivosPredioIULote(ddpiulU);
+                    iufU.setIDIULOTE(Integer.parseInt(request.getParameter("IdFormulario_IU")));
+                    iufU.setCLAVECATASTRALANTIGUOIULOTE(request.getParameter("IU_cca_pro1"));
+                    iufU.setCLAVECATASTRALNUEVOIULOTE(request.getParameter("IU_ccu"));
+                    iufU.setNUMEROPREDIOIULOTE(request.getParameter("IU_np"));
+
+                    formActualizarU.setIdentificacionUF(iufU);
+                    formActualizarU.setCodigoF(Integer.parseInt(request.getParameter("codigoF")));
+                    formActualizarU.setIdUsuarioF(Integer.parseInt(request.getParameter("idUser")));
+                    formActualizarU.setEstadoF(1);
+
+                    formS.editarformulario(formActualizarU);
+
+                    acceso = "formularioUsuario.jsp";
+                    break;
+                
                 /**
                  * *administradorPersonaCrud:Create***
                  */
@@ -320,7 +620,7 @@ public class DesgoS extends HttpServlet {
                     userS.eliminarUsuario(user);
                     acceso = "Administrador.jsp";
                     break;
-                    
+
                 /**
                  * *administradorUserCrud:Update***
                  */
@@ -340,17 +640,6 @@ public class DesgoS extends HttpServlet {
                     user.setTipoUsuario(tipou);
                     userS.editarUsuario(user);
                     acceso = "Administrador.jsp";
-                    break;
-                case "Formulario":
-
-                    identificacionUF.setCLAVECATASTRALANTIGUOIULOTE("123");
-                    identificacionUF.setCLAVECATASTRALNUEVOIULOTE("123");
-                    identificacionUF.setNUMEROPREDIOIULOTE("123");
-
-                    form.setIdentificacionUF(identificacionUF);
-                    if (formS.registrarFormulario(form, user)) {
-                        acceso = "menu.jsp?idUser=" + useraux.getIDUSUARIO() + "&name=" + useraux.getUSUARIOUSUARIO() + "&empresa=" + useraux.getEMPRESAUSUARIO();
-                    }
                     break;
 
             }

@@ -9,9 +9,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>DESGO Website Menu</title>
         <link rel="icon" type="image/png" href="Login/images/icons/Desgo.ico"/>
-        <meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
-        <meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
-        <meta name="author" content="Codrops" />
+        <meta name="description" content="A sidebar menu as seen on the DESGO website" />
+        <meta name="keywords" content="Desgo menu" />
+        <meta name="author" content="Desgo" />
         <!--		<link rel="shortcut icon" href="../favicon.ico">!-->
         <link rel="stylesheet" type="text/css" href="Menu/css/normalize.css" />
         <link rel="stylesheet" type="text/css" href="Menu/css/demo.css" />
@@ -54,16 +54,17 @@
                                 </form>
                                 </li>
                                 <li>
-                                    <form action="DesgoS?a=d92837bb331591b05aac92e158bd2902d6fcc4ea" method="post">
+                                    <form action="DesgoS?a=30bfa040d6820b49c35db8bff22f0017a13b462e" method="post">
                                         <input type="hidden" name="idUser" value="<%=id%>">
                                         <input type="hidden" name="name" value="<%=n%>">
                                         <input type="hidden" name="empresa" value="<%=e%>">
                                         <input type="hidden" name="tipo" value="<%=t%>">
                                         <a class="gn-icon gn-icon-archive">
-                                            <input type="submit" style="border: 0;width:80%;" value="Formulario">
+                                            <input type="submit" style="border: 0;width:80%;" value="Mis Formularios">
                                         </a>
                                     </form>
                                 </li>
+
 
                                 <!--Una especie de manual de usuario o contactos que puedan ayudar al usuario-->
                                 <li>

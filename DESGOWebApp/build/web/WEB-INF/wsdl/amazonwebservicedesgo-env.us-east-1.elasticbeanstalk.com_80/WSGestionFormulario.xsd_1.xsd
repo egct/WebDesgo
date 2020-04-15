@@ -4,13 +4,233 @@
 
 <xs:element name="addEconomiaResponse" type="tns:addEconomiaResponse"/>
 
+<xs:element name="asigUserFormulario" type="tns:asigUserFormulario"/>
+
+<xs:element name="asigUserFormularioResponse" type="tns:asigUserFormularioResponse"/>
+
+<xs:element name="buscarCodigoFormulario" type="tns:buscarCodigoFormulario"/>
+
+<xs:element name="buscarCodigoFormularioResponse" type="tns:buscarCodigoFormularioResponse"/>
+
+<xs:element name="cambiopruebaAWS" type="tns:cambiopruebaAWS"/>
+
+<xs:element name="cambiopruebaAWSResponse" type="tns:cambiopruebaAWSResponse"/>
+
+<xs:element name="editarformulario" type="tns:editarformulario"/>
+
+<xs:element name="editarformularioResponse" type="tns:editarformularioResponse"/>
+
+<xs:element name="eliminarFormulario" type="tns:eliminarFormulario"/>
+
+<xs:element name="eliminarFormularioResponse" type="tns:eliminarFormularioResponse"/>
+
 <xs:element name="hello" type="tns:hello"/>
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
 
+<xs:element name="insertarDDescriptivosPredio_IULote" type="tns:insertarDDescriptivosPredio_IULote"/>
+
+<xs:element name="insertarDDescriptivosPredio_IULoteResponse" type="tns:insertarDDescriptivosPredio_IULoteResponse"/>
+
+<xs:element name="insertarDireccion_DDPLote" type="tns:insertarDireccion_DDPLote"/>
+
+<xs:element name="insertarDireccion_DDPLoteResponse" type="tns:insertarDireccion_DDPLoteResponse"/>
+
+<xs:element name="insertarIdentificacionU_F" type="tns:insertarIdentificacionU_F"/>
+
+<xs:element name="insertarIdentificacionU_FResponse" type="tns:insertarIdentificacionU_FResponse"/>
+
+<xs:element name="listTodosFormIds" type="tns:listTodosFormIds"/>
+
+<xs:element name="listTodosFormIdsResponse" type="tns:listTodosFormIdsResponse"/>
+
+<xs:element name="listarFormulario" type="tns:listarFormulario"/>
+
+<xs:element name="listarFormularioInt" type="tns:listarFormularioInt"/>
+
+<xs:element name="listarFormularioIntResponse" type="tns:listarFormularioIntResponse"/>
+
+<xs:element name="listarFormularioResponse" type="tns:listarFormularioResponse"/>
+
+<xs:element name="listarFormularios" type="tns:listarFormularios"/>
+
+<xs:element name="listarFormulariosId" type="tns:listarFormulariosId"/>
+
+<xs:element name="listarFormulariosIdResponse" type="tns:listarFormulariosIdResponse"/>
+
+<xs:element name="listarFormulariosResponse" type="tns:listarFormulariosResponse"/>
+
+<xs:element name="registarFormulario" type="tns:registarFormulario"/>
+
+<xs:element name="registarFormularioResponse" type="tns:registarFormularioResponse"/>
+
 <xs:element name="testerAcabados" type="tns:testerAcabados"/>
 
 <xs:element name="testerAcabadosResponse" type="tns:testerAcabadosResponse"/>
+
+<xs:complexType name="editarformulario">
+<xs:sequence>
+<xs:element name="formulario" type="tns:formulario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="formulario">
+<xs:sequence>
+<xs:element name="caracterizacionC_F" type="tns:caracterizacionCF" minOccurs="0"/>
+<xs:element name="caracterizacionL_F" type="tns:caracterizacionLF" minOccurs="0"/>
+<xs:element name="codigo_F" type="xs:int" minOccurs="0"/>
+<xs:element name="economica_F" type="tns:economicaF" minOccurs="0"/>
+<xs:element name="elementosC_F" type="tns:elementosCF" minOccurs="0"/>
+<xs:element name="estado_F" type="xs:int" minOccurs="0"/>
+<xs:element name="graficosP_F" type="tns:graficosPF" minOccurs="0"/>
+<xs:element name="idFormulario" type="xs:int" minOccurs="0"/>
+<xs:element name="idUsuario_F" type="xs:int" minOccurs="0"/>
+<xs:element name="identificacionL_F" type="tns:identificacionLF" minOccurs="0"/>
+<xs:element name="identificacionU_F" type="tns:identificacionUF" minOccurs="0"/>
+<xs:element name="limites_F" type="tns:limitesF" minOccurs="0"/>
+<xs:element name="mapa_F" type="tns:mapaF" minOccurs="0"/>
+<xs:element name="mejora_F" type="tns:mejoraF" minOccurs="0"/>
+<xs:element name="responsables_F" type="tns:responsablesF" minOccurs="0"/>
+<xs:element name="vivienda_F" type="tns:viviendaF" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="caracterizacionCF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="caracterizacionLF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="economicaF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="elementosCF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="graficosPF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="identificacionLF">
+<xs:sequence>
+<xs:element name="FORMAADQUISICION" type="xs:string" minOccurs="0"/>
+<xs:element name="ID_COP_ILLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_DIR_ILLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_DOC_ILLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_ILLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_PRE_ILLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_PRO" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="identificacionUF">
+<xs:sequence>
+<xs:element name="CLAVECATASTRALANTIGUO_IULOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="CLAVECATASTRALNUEVO_IULOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="ID_DDPLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_IULOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="NUMEROPREDIO_IULOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="dDescriptivosPredio_IULote" type="tns:dDescriptivosPredioIULote" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dDescriptivosPredioIULote">
+<xs:sequence>
+<xs:element name="ID_DDPLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_DLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="NOMBREEDIFICIO_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NOMBRESECTOR_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="REGIMENTENECIA_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="TIPOPREDIO_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="USOPREDIO_DDPLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="dDPLote" type="tns:direccionDDPLote" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="direccionDDPLote">
+<xs:sequence>
+<xs:element name="CALLEP_DLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="ID_DLOTE" type="xs:int" minOccurs="0"/>
+<xs:element name="INTERSECCION_DLOTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NO_DLOTE" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="limitesF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="mapaF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="mejoraF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="responsablesF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viviendaF">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="editarformularioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormulariosId">
+<xs:sequence>
+<xs:element name="user" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormulariosIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formularioIds" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="formularioIds">
+<xs:sequence>
+<xs:element name="caracterizacionC_F" type="xs:int" minOccurs="0"/>
+<xs:element name="caracterizacionL_F" type="xs:int" minOccurs="0"/>
+<xs:element name="codigo_F" type="xs:int" minOccurs="0"/>
+<xs:element name="economica_F" type="xs:int" minOccurs="0"/>
+<xs:element name="elementosC_F" type="xs:int" minOccurs="0"/>
+<xs:element name="estado_F" type="xs:int" minOccurs="0"/>
+<xs:element name="graficosP_F" type="xs:int" minOccurs="0"/>
+<xs:element name="idFormulario" type="xs:int" minOccurs="0"/>
+<xs:element name="idUsuario_F" type="xs:int" minOccurs="0"/>
+<xs:element name="identificacionL_F" type="xs:int" minOccurs="0"/>
+<xs:element name="identificacionU_F" type="xs:int" minOccurs="0"/>
+<xs:element name="limites_F" type="xs:int" minOccurs="0"/>
+<xs:element name="mapa_F" type="xs:int" minOccurs="0"/>
+<xs:element name="mejora_F" type="xs:int" minOccurs="0"/>
+<xs:element name="responsables_F" type="xs:int" minOccurs="0"/>
+<xs:element name="vivienda_F" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormularioInt">
+<xs:sequence>
+<xs:element name="formularioIds" type="xs:int"/>
+<xs:element name="iulote" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormularioIntResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formulario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="addEconomia">
 <xs:sequence>
@@ -33,15 +253,66 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="hello">
+<xs:complexType name="eliminarFormulario">
 <xs:sequence>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="codigo" type="xs:string" minOccurs="0"/>
+<xs:element name="user" type="tns:user" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="helloResponse">
+<xs:complexType name="user">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="CONTRASENIA_USUARIO" type="xs:string" minOccurs="0"/>
+<xs:element name="EMPRESA_USUARIO" type="xs:string" minOccurs="0"/>
+<xs:element name="ID_PERSONA" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_TIPOUSUARIO" type="xs:int" minOccurs="0"/>
+<xs:element name="ID_USUARIO" type="xs:int" minOccurs="0"/>
+<xs:element name="persona" type="tns:persona" minOccurs="0"/>
+<xs:element name="SALT_USUARIO" type="xs:int" minOccurs="0"/>
+<xs:element name="tipoUsuario" type="tns:tipoUsuario" minOccurs="0"/>
+<xs:element name="USUARIO_USUARIO" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="persona">
+<xs:sequence>
+<xs:element name="CARGO_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="CEDULA_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="CORREO_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="EMPRESA_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="FOTO_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="ID_PERSONA" type="xs:int" minOccurs="0"/>
+<xs:element name="PAPELLIDO_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="PNOMBRE_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="PROFESION_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="SAPELLIDO_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="SNOMBRE_PERSONA" type="xs:string" minOccurs="0"/>
+<xs:element name="TELEFONO_PERSONA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tipoUsuario">
+<xs:sequence>
+<xs:element name="ID_TIPOUSUARIO" type="xs:int" minOccurs="0"/>
+<xs:element name="NIVEL_TIPOUSUARIO" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarFormularioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormularios">
+<xs:sequence>
+<xs:element name="user" type="tns:user" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormulariosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formularioIds" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -69,6 +340,145 @@
 <xs:element name="TIPOACABADO_AC" type="xs:string" minOccurs="0"/>
 <xs:element name="TUMBADO_AC" type="xs:string" minOccurs="0"/>
 <xs:element name="VENTANA_AC" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormulario">
+<xs:sequence>
+<xs:element name="user" type="tns:user" minOccurs="0"/>
+<xs:element name="formularioIds" type="tns:formularioIds" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarFormularioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formulario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="asigUserFormulario">
+<xs:sequence>
+<xs:element name="idUser" type="xs:int"/>
+<xs:element name="idForm" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="asigUserFormularioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarDDescriptivosPredio_IULote">
+<xs:sequence>
+<xs:element name="dDescriptivosPredio_IULote" type="tns:dDescriptivosPredioIULote" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarDDescriptivosPredio_IULoteResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registarFormulario">
+<xs:sequence>
+<xs:element name="us" type="tns:user" minOccurs="0"/>
+<xs:element name="form" type="tns:formularioIds" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registarFormularioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiopruebaAWS">
+<xs:sequence>
+<xs:element name="pruebaaws" type="tns:pruebaAws" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pruebaAws">
+<xs:sequence>
+<xs:element name="hora" type="xs:int" minOccurs="0"/>
+<xs:element name="idPrueba" type="xs:int" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiopruebaAWSResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarIdentificacionU_F">
+<xs:sequence>
+<xs:element name="identificacionU_F" type="tns:identificacionUF" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarIdentificacionU_FResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarCodigoFormulario">
+<xs:sequence>
+<xs:element name="codigo" type="xs:string" minOccurs="0"/>
+<xs:element name="user" type="tns:user" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarCodigoFormularioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formularioIds" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarDireccion_DDPLote">
+<xs:sequence>
+<xs:element name="direccion_DDPLote" type="tns:direccionDDPLote" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarDireccion_DDPLoteResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listTodosFormIds">
+<xs:sequence>
+<xs:element name="empresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listTodosFormIdsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:hashMapClassForm" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hashMapClassForm">
+<xs:sequence>
+<xs:element name="form" type="tns:formularioIds" minOccurs="0"/>
+<xs:element name="us" type="tns:user" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

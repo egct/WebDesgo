@@ -19,9 +19,13 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="caracterizacionC_F" type="{http://servicios.desgo.com.ec/}caracterizacionCF" minOccurs="0"/&gt;
  *         &lt;element name="caracterizacionL_F" type="{http://servicios.desgo.com.ec/}caracterizacionLF" minOccurs="0"/&gt;
+ *         &lt;element name="codigo_F" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
  *         &lt;element name="economica_F" type="{http://servicios.desgo.com.ec/}economicaF" minOccurs="0"/&gt;
  *         &lt;element name="elementosC_F" type="{http://servicios.desgo.com.ec/}elementosCF" minOccurs="0"/&gt;
+ *         &lt;element name="estado_F" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
  *         &lt;element name="graficosP_F" type="{http://servicios.desgo.com.ec/}graficosPF" minOccurs="0"/&gt;
+ *         &lt;element name="idFormulario" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
+ *         &lt;element name="idUsuario_F" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
  *         &lt;element name="identificacionL_F" type="{http://servicios.desgo.com.ec/}identificacionLF" minOccurs="0"/&gt;
  *         &lt;element name="identificacionU_F" type="{http://servicios.desgo.com.ec/}identificacionUF" minOccurs="0"/&gt;
  *         &lt;element name="limites_F" type="{http://servicios.desgo.com.ec/}limitesF" minOccurs="0"/&gt;
@@ -41,9 +45,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "formulario", propOrder = {
     "caracterizacionCF",
     "caracterizacionLF",
+    "codigoF",
     "economicaF",
     "elementosCF",
+    "estadoF",
     "graficosPF",
+    "idFormulario",
+    "idUsuarioF",
     "identificacionLF",
     "identificacionUF",
     "limitesF",
@@ -58,12 +66,19 @@ public class Formulario {
     protected CaracterizacionCF caracterizacionCF;
     @XmlElement(name = "caracterizacionL_F")
     protected CaracterizacionLF caracterizacionLF;
+    @XmlElement(name = "codigo_F")
+    protected Integer codigoF;
     @XmlElement(name = "economica_F")
     protected EconomicaF economicaF;
     @XmlElement(name = "elementosC_F")
     protected ElementosCF elementosCF;
+    @XmlElement(name = "estado_F")
+    protected Integer estadoF;
     @XmlElement(name = "graficosP_F")
     protected GraficosPF graficosPF;
+    protected Integer idFormulario;
+    @XmlElement(name = "idUsuario_F")
+    protected Integer idUsuarioF;
     @XmlElement(name = "identificacionL_F")
     protected IdentificacionLF identificacionLF;
     @XmlElement(name = "identificacionU_F")
@@ -128,6 +143,30 @@ public class Formulario {
     }
 
     /**
+     * Obtiene el valor de la propiedad codigoF.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getCodigoF() {
+        return codigoF;
+    }
+
+    /**
+     * Define el valor de la propiedad codigoF.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setCodigoF(Integer value) {
+        this.codigoF = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad economicaF.
      * 
      * @return
@@ -176,6 +215,30 @@ public class Formulario {
     }
 
     /**
+     * Obtiene el valor de la propiedad estadoF.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getEstadoF() {
+        return estadoF;
+    }
+
+    /**
+     * Define el valor de la propiedad estadoF.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setEstadoF(Integer value) {
+        this.estadoF = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad graficosPF.
      * 
      * @return
@@ -197,6 +260,54 @@ public class Formulario {
      */
     public void setGraficosPF(GraficosPF value) {
         this.graficosPF = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idFormulario.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getIdFormulario() {
+        return idFormulario;
+    }
+
+    /**
+     * Define el valor de la propiedad idFormulario.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setIdFormulario(Integer value) {
+        this.idFormulario = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idUsuarioF.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getIdUsuarioF() {
+        return idUsuarioF;
+    }
+
+    /**
+     * Define el valor de la propiedad idUsuarioF.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setIdUsuarioF(Integer value) {
+        this.idUsuarioF = value;
     }
 
     /**

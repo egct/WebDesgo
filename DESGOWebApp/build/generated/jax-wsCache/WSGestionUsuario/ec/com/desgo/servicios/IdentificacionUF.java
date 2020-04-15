@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="ID_DDPLOTE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
  *         &lt;element name="ID_IULOTE" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
  *         &lt;element name="NUMEROPREDIO_IULOTE" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="dDescriptivosPredio_IULote" type="{http://servicios.desgo.com.ec/}dDescriptivosPredioIULote" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,7 +37,8 @@ import javax.xml.bind.annotation.XmlType;
     "clavecatastralnuevoiulote",
     "idddplote",
     "idiulote",
-    "numeropredioiulote"
+    "numeropredioiulote",
+    "dDescriptivosPredioIULote"
 })
 public class IdentificacionUF {
 
@@ -50,6 +52,8 @@ public class IdentificacionUF {
     protected Integer idiulote;
     @XmlElement(name = "NUMEROPREDIO_IULOTE")
     protected String numeropredioiulote;
+    @XmlElement(name = "dDescriptivosPredio_IULote")
+    protected DDescriptivosPredioIULote dDescriptivosPredioIULote;
 
     /**
      * Obtiene el valor de la propiedad clavecatastralantiguoiulote.
@@ -169,6 +173,30 @@ public class IdentificacionUF {
      */
     public void setNUMEROPREDIOIULOTE(String value) {
         this.numeropredioiulote = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad dDescriptivosPredioIULote.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DDescriptivosPredioIULote }
+     *     
+     */
+    public DDescriptivosPredioIULote getDDescriptivosPredioIULote() {
+        return dDescriptivosPredioIULote;
+    }
+
+    /**
+     * Define el valor de la propiedad dDescriptivosPredioIULote.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DDescriptivosPredioIULote }
+     *     
+     */
+    public void setDDescriptivosPredioIULote(DDescriptivosPredioIULote value) {
+        this.dDescriptivosPredioIULote = value;
     }
 
 }

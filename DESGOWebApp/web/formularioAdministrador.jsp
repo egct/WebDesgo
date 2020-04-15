@@ -3,13 +3,16 @@
     <head>        
 
         <meta http-equiv="content-type" content="text/html; utf-8">
-        <%@page import="ec.com.desgo.modelo.UserService"%>
-        <%@page import="ec.com.desgo.controlador.DesgoS"%>
+        <%@page import="java.util.List"%>
+        <%@page import="java.util.ArrayList"%>
+        <%@page import="ec.com.desgo.modelo.*"%>
+        <%@page import="ec.com.desgo.controlador.*"%>
+        <%@page import="ec.com.desgo.servicios.*"%>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
         <title>DESGO Website Menu</title>
         <link rel="icon" type="image/png" href="Login/images/icons/Desgo.ico"/>
         <meta name="description" content="DESGO website" />
-        <meta name="keywords" content="desgo" />
+        <meta name="keywords" content="Desgo menu" />
         <meta name="author" content="Desgo" />
         <!--Estilo general de la pagina-->
         <link rel="stylesheet" type="text/css" href="Formulario/css/normalize.css" />
@@ -87,6 +90,10 @@
             String n = request.getParameter("name");
             String e = request.getParameter("empresa");
             String t = request.getParameter("tipo");
+            String IdFormulario = request.getParameter("IdFormulario");
+            String IdFormulario_IU = request.getParameter("formIds_IU");
+
+            //FormularioIds formularioIds=(FormularioIds)request.getAttribute("formIds");
         %>
         <script>
             $(document).ready(function () {
@@ -358,13 +365,25 @@
                                     </form>
                                 </li>                         
                                 <li>
-                                    <form action="DesgoS?a=2c3279f6b1dce58a4d197fb68d3515bab8f5129a" method="post">
+                                    <form action="DesgoS?a=3773b45def36f7906ee172a3a88b69a13dd4009a" method="post">
                                         <input type="hidden" name="idUser" value="<%=id%>">
                                         <input type="hidden" name="name" value="<%=n%>">
                                         <input type="hidden" name="empresa" value="<%=e%>">
                                         <input type="hidden" name="tipo" value="<%=t%>">
                                         <a class="gn-icon gn-icon-archive">
-                                            <input type="submit" style="border: 0;width:80%;" value="Formulario">
+                                            <input type="submit" style="border: 0;width:80%;" value="Mis Formularios">
+                                        </a>
+                                    </form>
+                                </li>
+
+                                <li>
+                                    <form action="DesgoS?a=d65b1910633f1549f818bd804a2f10882ed36026" method="post">
+                                        <input type="hidden" name="idUser" value="<%=id%>">
+                                        <input type="hidden" name="name" value="<%=n%>">
+                                        <input type="hidden" name="empresa" value="<%=e%>">
+                                        <input type="hidden" name="tipo" value="<%=t%>">
+                                        <a class="gn-icon gn-icon-archive">
+                                            <input type="submit" style="border: 0;width:80%;" value="Asignar Formularios">
                                         </a>
                                     </form>
                                 </li>
@@ -547,9 +566,39 @@
             <div>
                 <a name="tab" ></a><br> 
                 <br>
+                <br>
             </div>
-            <form class="formulario" method="POST" action="Controlador?action=Formulario">
+            <Center>
+                <h1 style="color: black;">Formulario: <%=request.getParameter("codigoF")%> </h1>
+            </Center>
 
+            <form class="formulario" id="formularioActual" name="formularioActual" method="POST" action="DesgoS?a=1135b4862b8f56a89f2066ecae93d4491a7d218d799189c4612e5d48a71cbbcd" >
+                <input type="hidden" name="idUser" value="<%=id%>">
+                <input type="hidden" name="name" value="<%=n%>">
+                <input type="hidden" name="empresa" value="<%=e%>">
+                <input type="hidden" name="tipo" value="<%=t%>">
+                <input type="hidden" name="IdFormulario" value="<%=IdFormulario%>">
+                <input type="hidden" name="IdFormulario_IU" value="<%=IdFormulario_IU%>">
+                
+                <input type="hidden" name="codigoF" value="<%=request.getParameter("codigoF")%>">
+                
+                <%
+                    String codigo = request.getParameter("codigoF");
+                    FormService serviceF = new FormService();
+                    FormularioIds formId = new FormularioIds();
+                    formId.setIdFormulario(Integer.parseInt(IdFormulario));
+                    formId.setCodigoF(Integer.parseInt(codigo));
+                    formId.setIdentificacionUF(Integer.parseInt(IdFormulario_IU));
+
+                    User us = new User();
+                    us.setIDUSUARIO(Integer.parseInt(id));
+
+                    Formulario form = serviceF.listarFormulario(us, formId);
+                    
+                %>
+                <script>
+
+                </script>
                 <div class="secciones">
 
 
@@ -560,6 +609,13 @@
                         <h5>Clave catastral anterior: </h5>
                         <br>
                         <center>
+                            <table class="gentab" style="width: 80%">
+                                <tr>
+                                    <th ><input style="font-size:15px;" name="IU_cca_pro1" id="IU_cca_pro1" maxlength="34" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
+                                        event.returnValue = false;" value="<%=form.getIdentificacionUF().getCLAVECATASTRALANTIGUOIULOTE()%>"></th>
+                                </tr>
+                            </table>
+                            <br>
                             <table class="gentab" style="width: 80%">
                                 <tr>
                                     <td style="border-left:hidden;border-right: hidden;border-top:hidden"> </td>
@@ -581,43 +637,6 @@
                                     <th >UN</th>
                                 </tr>
                                 <tr>
-                                    <th ><input id="IU_cca_pro1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_pro2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;" ></th>
-                                    <th ><input  id="IU_cca_can1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_can2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_par1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_par2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_zon1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_zon2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_sec1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_sec2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_man1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_man2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_pre1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_pre2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_ph1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_ph2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_ph3" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-
-                                </tr>
-                                <tr>
                                     <td colspan="2"> PRO </td>
                                     <td colspan="2"> CAN </td>
                                     <td colspan="2"> PAR </td>
@@ -626,8 +645,8 @@
                                     <td colspan="2"> MAN </td>
                                     <td colspan="2"> PRE </td>
                                     <td colspan="3"> P.H. </td>
-
                                 </tr>
+                                
                             </table>
                         </center>
                         <br>
@@ -637,8 +656,8 @@
                         <center>
                             <table class="gentab"  >
                                 <tr>
-                                    <th colspan="10" ><input id="IU_ccu"  maxlength="26" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;" ></th>
+                                    <th colspan="10" ><input style="font-size:15px;" name="IU_ccu" id="IU_ccu"  maxlength="26" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
+                                                event.returnValue = false;" value="<%=form.getIdentificacionUF().getCLAVECATASTRALNUEVOIULOTE()%>"></th>
 
                                 </tr>
                                 <tr>
@@ -661,8 +680,9 @@
                         <center>
                             <table class="gentab" style="width: 30%;height: 100%">
                                 <tr>
-                                    <th ><input id="IU_np"  maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;" ></th>
+                                    <th ><input style="font-size:15px;" name="IU_np" id="IU_np"  maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
+                                                event.returnValue = false;" value="<%=form.getIdentificacionUF().getNUMEROPREDIOIULOTE()%>"></th>
+
                                 </tr>
                             </table>
                             <br>
@@ -672,12 +692,12 @@
                         <br>
                         <section class="form-group">
                             <ul class="form-fields">
-                                <li><label >Nombre del sector:</label><input type="text" id="IU_dd_nsec" placeholder="Nombre del sector" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;" > </li>
-                                <li><label>Nombre del edificio:</label><input type="text" id="IU_dd_nedi" placeholder="Nombre del edificio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
-                                <li><label >Uso del predio:</label><input type="text" id="IU_dd_usop" placeholder="Uso del predio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
+                                <li><label >Nombre del sector:</label><input type="text" name="IU_dd_nsec" id="IU_dd_nsec" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getNOMBRESECTORDDPLOTE()%>"> </li>
+                                <li><label>Nombre del edificio:</label><input type="text" name="IU_dd_nedi" id="IU_dd_nedi" placeholder="Nombre del edificio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getNOMBREEDIFICIODDPLOTE()%>"> </li>
+                                <li><label >Uso del predio:</label><input type="text" name="IU_dd_usop" id="IU_dd_usop" placeholder="Uso del predio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getUSOPREDIODDPLOTE()%>"> </li>
                                 <li><label>Tipo de predio</label> </li>
                             </ul>  
 
@@ -690,6 +710,19 @@
                                 <label for="IU_dd_urb">Urbano</label>
                                 <input type="radio" name="diclote" id="IU_dd_rur">
                                 <label for="IU_dd_rur">Rural</label>
+                                <script>
+                                    
+                                    var banderaTipoP = "<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getTIPOPREDIODDPLOTE()%>";
+                                    console.log(banderaTipoP);
+                                    switch (banderaTipoP) {
+                                        case "Urbano":
+                                            document.getElementById("IU_dd_urb").checked = true;
+                                            break;
+                                        case "Rural":
+                                            document.getElementById("IU_dd_rur").checked = true;
+                                            break;
+                                    }
+                                </script>
                             </div>
                         </center>
 
@@ -700,28 +733,49 @@
 
                         </section>
                         <center>
-                            <div class="radio" style="white-space: normal;">
-                                <input type="radio" name="tenencia" id="IU_dd_uni">
+                            <div class="radio" style="white-space: normal;" >
+                               
+                                <input type="radio"  name="tenencia" id="IU_dd_uni">
                                 <label for="IU_dd_uni">Unipropiedad</label>
                                 <input type="radio" name="tenencia" id="IU_dd_ph">
                                 <label for="IU_dd_ph">Popiedad Horizontal</label>
                                 <input type="radio" name="tenencia" id="IU_dd_op">
                                 <label for="IU_dd_op">OP-Copropiedad (DER-ACC)</label> 
+                                 <script>
+                                    
+                                    var banderaTenencia = "<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getREGIMENTENECIADDPLOTE()%>";
+                                    console.log(banderaTenencia);
+                                    switch (banderaTenencia) {
+                                        case "Unipropiedad":
+                                            document.getElementById("IU_dd_uni").checked = true;
+                                            break;
+                                        case "Popiedad Horizontal":
+                                            document.getElementById("IU_dd_ph").checked = true;
+                                            break;
+                                        case "OP-Copropiedad (DER-ACC)":
+                                            document.getElementById("IU_dd_op").checked = true;
+                                            break;
+                                    }
+                                </script>
                             </div> <br><br>
+
                         </center>
                         <h5>Direccion</h5><br><br>
                         <section class="form-group">
                             <ul class="form-fields">
-                                <li><label >Calle principal: </label><input type="text" id="IU_d_callep" placeholder="Calle Principal" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
-                                <li><label>No:</label><input type="text" id="IU_d_no" placeholder="No de direccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
-                                <li><label >Intersección:</label><input type="text" id="IU_d_inter" placeholder="Interseccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
+                                <li><label >Calle principal: </label><input type="text" name="IU_d_callep" id="IU_d_callep" placeholder="Calle Principal" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getDDPLote().getCALLEPDLOTE()%>"> </li>
+                                <li><label>No:</label><input type="text" name="IU_d_no" id="IU_d_no" placeholder="No de direccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getDDPLote().getNODLOTE()%>"> </li>
+                                <li><label >Intersección:</label><input type="text" name="IU_d_inter" id="IU_d_inter" placeholder="Interseccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getDDPLote().getINTERSECCIONDLOTE()%>"> </li>
 
                             </ul>  
 
                         </section><br><br>
+                        <input type="hidden" name="IdDDescriptivospredio" value="<%=form.getIdentificacionUF().getIDDDPLOTE()%>">
+                        <input type="hidden" name="IdDireccion" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getIDDLOTE()%>">
+
                     </article>
 
                     <!--Segunda seccion de la identificacion legal del lote-->
@@ -1830,7 +1884,7 @@
 
                                 <article id="tabB">
                                     <style type="text/css">
-                                        #submit {
+                                        #submitEM, #submitBC{
                                             margin-top:5%;
                                             cursor:pointer;
                                             width:30%;
@@ -1842,102 +1896,144 @@
                                             font-size:100%;
                                             color:#ffffff;
                                         }
+                                        #submitAM {
+                                            margin-top:5%;
+                                            cursor:pointer;
+                                            width:30%;
+                                            height:10%;
+                                            background:#0489B1;
+                                            border:2px solid #f6f6f6;
+                                            padding:10px;
+                                            margin-top:5px;
+                                            font-size:100%;
+                                            color:#ffffff;
+                                        }
 
-                                    </style><center>
-                                        <input id="submit" type="submit" value="Enviar "class="botonform">
-                                        <input id="submit" type="reset" value="Borrar " class="botonform">
+                                    </style>
+                                    <center>
+                                        <input id="submitEM" type="submit" value="Enviar modificación"class="botonform" disabled="true" onclick="enviarCambios()">
+                                        <input id="submitBC" type="reset" value="Borrar Cambios" class="botonform" disabled="true">
+                                        <input id="submitAM" type="button" value="Activar modificación"  onclick="activarModificacion()">
                                     </center>    
                                 </article>
-                            </div>
+                </div>
+            </form>    
+            <iframe name="null" style="display: none;"></iframe>
+            <script>
+                function enviarCambios(){
+                    document.formularioActual.target="null";
+                    document.formularioActual.submit();
+                    alert("Formulario modificado satisfactoriamente");
+                }
+            </script>
+    </div><!-- /container -->      
+    <script>
+        new gnMenu(document.getElementById('gn-menu'));
+        var idUser =<%=request.getParameter("idUser")%>;
+        var name = "<%=request.getParameter("name")%>";
+        console.log("iduser" + idUser + "name" + name);
+    </script>
+    <script>
+        /*****activarModificacion de botones para el envio del formulario******/
+        function activarModificacion(){
+            if(document.getElementById("submitEM").disabled===true){
+                document.getElementById("submitAM").value="Desactivar modificación";
+                document.getElementById("submitEM").disabled=false;
+                document.getElementById("submitBC").disabled=false;
+                document.getElementById("submitEM").style.backgroundColor='#088A08';
+                document.getElementById("submitBC").style.backgroundColor='#8A0808';
+                document.getElementById("submitAM").style.backgroundColor='#666666';
+
+            }else{
+                document.getElementById("submitAM").value="Activar modificación";
+                document.getElementById("submitEM").disabled=true;
+                document.getElementById("submitBC").disabled=true;
+                document.getElementById("submitEM").style.backgroundColor='#666666';
+                document.getElementById("submitBC").style.backgroundColor='#666666';
+                document.getElementById("submitAM").style.backgroundColor='#0489B1';
+            }
+        }
 
 
-                            </form>    
-                            </div><!-- /container -->      
-                            <script>
-                                new gnMenu(document.getElementById('gn-menu'));
-                                var idUser =<%=request.getParameter("idUser")%>;
-                                var name = "<%=request.getParameter("name")%>";
-                                console.log("iduser" + idUser + "name" + name);
-                            </script>
+    </script>
+    </body>
+    <footer style="width:100%; max-width:100%; margin: 0px auto; position: relative; text-align: justify; ">
+        <div class="container-footer-all" style="width: 100%">
+            <div class="container-body">
+                <div class="colum1">
+                    <h1>Mas informacion de la compañia</h1>
+                    <p>La empresa DESGO es una iniciativa que realiza su actividad en el
+                        ámbito del desarrollo de aplicaciones web y móviles integradas, 
+                        enfocados en las áreas geográfica, ambiental y social; así mismo 
+                        como explora en nuevas tecnologías aplicables a la elaboración de 
+                        geoportales y análisis de big data.
 
-                            </body>
-                            <footer style="width:100%; max-width:100%; margin: 0px auto; position: relative; text-align: justify; ">
-                                <div class="container-footer-all" style="width: 100%">
-                                    <div class="container-body">
-                                        <div class="colum1">
-                                            <h1>Mas informacion de la compañia</h1>
-                                            <p>La empresa DESGO es una iniciativa que realiza su actividad en el
-                                                ámbito del desarrollo de aplicaciones web y móviles integradas, 
-                                                enfocados en las áreas geográfica, ambiental y social; así mismo 
-                                                como explora en nuevas tecnologías aplicables a la elaboración de 
-                                                geoportales y análisis de big data.
+                        DESGO brinda un espacio para la creación de nuevas ideas que 
+                        potencialice a la juventud con el objetivo de integrar grupos 
+                        multidisciplinarios que desarrollen productos para el beneficio
+                        de la comunidad y el progreso del país
+                    </p>
+                </div>
+                <div class="colum2">
 
-                                                DESGO brinda un espacio para la creación de nuevas ideas que 
-                                                potencialice a la juventud con el objetivo de integrar grupos 
-                                                multidisciplinarios que desarrollen productos para el beneficio
-                                                de la comunidad y el progreso del país
-                                            </p>
-                                        </div>
-                                        <div class="colum2">
+                    <h1>Redes Sociales</h1>
 
-                                            <h1>Redes Sociales</h1>
-
-                                            <div class="row" >
-                                                <img src="Menu/icon/facebook.png" >
-                                                <a href="https://www.facebook.com/">
-                                                    <label>Siguenos en Facebook</label>
-                                                </a>
-                                            </div>
-                                            <div class="row">
-                                                <img src="Menu/icon/twitter.png">
-                                                <a href="https://www.Twitter.com/">
-                                                    <label>Siguenos en Twitter</label>
-                                                </a>
-                                            </div>
-                                            <div class="row">
-                                                <img src="Menu/icon/instagram.png">
-                                                <a href="https://www.Instagram.com/">
-                                                    <label>Siguenos en Instagram</label>
-                                                </a>
-                                            </div>
-                                            <div class="row">
-                                                <img src="Menu/icon/google-plus.png">
-                                                <a href="https://www.Instagram.com/">
-                                                    <label>Siguenos en Google Plus</label>
-                                                </a>
-                                            </div>
-                                            <div class="row">
-                                                <img src="Menu/icon/pinterest.png">
-                                                <label>Siguenos en Pinteres</label>
-                                            </div>
-                                        </div>
-                                        <div class="colum3" style="text-align: justify">
-                                            <h1>Informacion Contactos</h1>
-                                            <div class="row2">
-                                                <img src="Menu/icon/house.png">
-                                                <label>Florinda de Alvear y 
-                                                    Joaquín Gallegos Lara E17-25</label>
-                                            </div>
-                                            <div class="row2">
-                                                <img src="Menu/icon/smartphone.png">
-                                                <label>0997589895</label>
-                                            </div>
-                                            <div class="row2">
-                                                <img src="Menu/icon/contact.png">
-                                                <label>desgoecuador @outlook.com</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container-footer"  style="text-align: justify">
-                                    <div class="footer">
-                                        <div class="copyright">
-                                            © 2019 Todos los Derechos Reservados | <a href="">DESGO</a>
-                                        </div>
-                                        <div class="information">
-                                            <a href="">Informacion Compañia</a> | <a href="">Privacion y Politica</a> | <a href="">Terminos y Condiciones</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </footer>
-                            </html>
+                    <div class="row" >
+                        <img src="Menu/icon/facebook.png" >
+                        <a href="https://www.facebook.com/">
+                            <label>Siguenos en Facebook</label>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <img src="Menu/icon/twitter.png">
+                        <a href="https://www.Twitter.com/">
+                            <label>Siguenos en Twitter</label>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <img src="Menu/icon/instagram.png">
+                        <a href="https://www.Instagram.com/">
+                            <label>Siguenos en Instagram</label>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <img src="Menu/icon/google-plus.png">
+                        <a href="https://www.Instagram.com/">
+                            <label>Siguenos en Google Plus</label>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <img src="Menu/icon/pinterest.png">
+                        <label>Siguenos en Pinteres</label>
+                    </div>
+                </div>
+                <div class="colum3" style="text-align: justify">
+                    <h1>Informacion Contactos</h1>
+                    <div class="row2">
+                        <img src="Menu/icon/house.png">
+                        <label>Florinda de Alvear y 
+                            Joaquín Gallegos Lara E17-25</label>
+                    </div>
+                    <div class="row2">
+                        <img src="Menu/icon/smartphone.png">
+                        <label>0997589895</label>
+                    </div>
+                    <div class="row2">
+                        <img src="Menu/icon/contact.png">
+                        <label>desgoecuador @outlook.com</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-footer"  style="text-align: justify">
+            <div class="footer">
+                <div class="copyright">
+                    © 2019 Todos los Derechos Reservados | <a href="">DESGO</a>
+                </div>
+                <div class="information">
+                    <a href="">Informacion Compañia</a> | <a href="">Privacion y Politica</a> | <a href="">Terminos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </html>

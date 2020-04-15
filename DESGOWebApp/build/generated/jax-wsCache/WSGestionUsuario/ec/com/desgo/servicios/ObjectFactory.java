@@ -381,6 +381,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DDescriptivosPredioIULote }
+     * 
+     */
+    public DDescriptivosPredioIULote createDDescriptivosPredioIULote() {
+        return new DDescriptivosPredioIULote();
+    }
+
+    /**
+     * Create an instance of {@link DireccionDDPLote }
+     * 
+     */
+    public DireccionDDPLote createDireccionDDPLote() {
+        return new DireccionDDPLote();
+    }
+
+    /**
      * Create an instance of {@link LimitesF }
      * 
      */

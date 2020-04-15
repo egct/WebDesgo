@@ -1,6 +1,7 @@
 
 package ec.com.desgo.servicios;
 
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -26,18 +27,183 @@ public interface WSGestionFormulario {
 
     /**
      * 
-     * @param name
+     * @param formularioIds
+     * @param user
+     * @return
+     *     returns ec.com.desgo.servicios.Formulario
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarFormulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormulario")
+    @ResponseWrapper(localName = "listarFormularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormularioResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormularioRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormularioResponse")
+    public Formulario listarFormulario(
+        @WebParam(name = "user", targetNamespace = "")
+        User user,
+        @WebParam(name = "formularioIds", targetNamespace = "")
+        FormularioIds formularioIds);
+
+    /**
+     * 
+     * @param iulote
+     * @param formularioIds
+     * @return
+     *     returns ec.com.desgo.servicios.Formulario
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarFormularioInt", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormularioInt")
+    @ResponseWrapper(localName = "listarFormularioIntResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormularioIntResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormularioIntRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormularioIntResponse")
+    public Formulario listarFormularioInt(
+        @WebParam(name = "formularioIds", targetNamespace = "")
+        int formularioIds,
+        @WebParam(name = "iulote", targetNamespace = "")
+        int iulote);
+
+    /**
+     * 
+     * @param empresa
+     * @return
+     *     returns java.util.List<ec.com.desgo.servicios.HashMapClassForm>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listTodosFormIds", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListTodosFormIds")
+    @ResponseWrapper(localName = "listTodosFormIdsResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListTodosFormIdsResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/listTodosFormIdsRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/listTodosFormIdsResponse")
+    public List<HashMapClassForm> listTodosFormIds(
+        @WebParam(name = "empresa", targetNamespace = "")
+        String empresa);
+
+    /**
+     * 
+     * @param formulario
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "editarformulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.Editarformulario")
+    @ResponseWrapper(localName = "editarformularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.EditarformularioResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/editarformularioRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/editarformularioResponse")
+    public boolean editarformulario(
+        @WebParam(name = "formulario", targetNamespace = "")
+        Formulario formulario);
+
+    /**
+     * 
+     * @param codigo
+     * @param user
+     * @return
+     *     returns ec.com.desgo.servicios.FormularioIds
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "buscarCodigoFormulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.BuscarCodigoFormulario")
+    @ResponseWrapper(localName = "buscarCodigoFormularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.BuscarCodigoFormularioResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/buscarCodigoFormularioRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/buscarCodigoFormularioResponse")
+    public FormularioIds buscarCodigoFormulario(
+        @WebParam(name = "codigo", targetNamespace = "")
+        String codigo,
+        @WebParam(name = "user", targetNamespace = "")
+        User user);
+
+    /**
+     * 
+     * @param codigo
+     * @param user
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "eliminarFormulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.EliminarFormulario")
+    @ResponseWrapper(localName = "eliminarFormularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.EliminarFormularioResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/eliminarFormularioRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/eliminarFormularioResponse")
+    public boolean eliminarFormulario(
+        @WebParam(name = "codigo", targetNamespace = "")
+        String codigo,
+        @WebParam(name = "user", targetNamespace = "")
+        User user);
+
+    /**
+     * 
+     * @param idUser
+     * @param idForm
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "asigUserFormulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.AsigUserFormulario")
+    @ResponseWrapper(localName = "asigUserFormularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.AsigUserFormularioResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/asigUserFormularioRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/asigUserFormularioResponse")
+    public boolean asigUserFormulario(
+        @WebParam(name = "idUser", targetNamespace = "")
+        int idUser,
+        @WebParam(name = "idForm", targetNamespace = "")
+        int idForm);
+
+    /**
+     * 
+     * @param direccionDDPLote
+     * @return
+     *     returns long
+     */
+    @WebMethod(operationName = "insertarDireccion_DDPLote")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "insertarDireccion_DDPLote", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.InsertarDireccionDDPLote")
+    @ResponseWrapper(localName = "insertarDireccion_DDPLoteResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.InsertarDireccionDDPLoteResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/insertarDireccion_DDPLoteRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/insertarDireccion_DDPLoteResponse")
+    public long insertarDireccionDDPLote(
+        @WebParam(name = "direccion_DDPLote", targetNamespace = "")
+        DireccionDDPLote direccionDDPLote);
+
+    /**
+     * 
+     * @param dDescriptivosPredioIULote
+     * @return
+     *     returns long
+     */
+    @WebMethod(operationName = "insertarDDescriptivosPredio_IULote")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "insertarDDescriptivosPredio_IULote", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.InsertarDDescriptivosPredioIULote")
+    @ResponseWrapper(localName = "insertarDDescriptivosPredio_IULoteResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.InsertarDDescriptivosPredioIULoteResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/insertarDDescriptivosPredio_IULoteRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/insertarDDescriptivosPredio_IULoteResponse")
+    public long insertarDDescriptivosPredioIULote(
+        @WebParam(name = "dDescriptivosPredio_IULote", targetNamespace = "")
+        DDescriptivosPredioIULote dDescriptivosPredioIULote);
+
+    /**
+     * 
+     * @param identificacionUF
+     * @return
+     *     returns long
+     */
+    @WebMethod(operationName = "insertarIdentificacionU_F")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "insertarIdentificacionU_F", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.InsertarIdentificacionUF")
+    @ResponseWrapper(localName = "insertarIdentificacionU_FResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.InsertarIdentificacionUFResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/insertarIdentificacionU_FRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/insertarIdentificacionU_FResponse")
+    public long insertarIdentificacionUF(
+        @WebParam(name = "identificacionU_F", targetNamespace = "")
+        IdentificacionUF identificacionUF);
+
+    /**
+     * 
+     * @param pruebaaws
      * @return
      *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "hello", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.Hello")
-    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.HelloResponse")
-    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/helloRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/helloResponse")
-    public String hello(
-        @WebParam(name = "name", targetNamespace = "")
-        String name);
+    @RequestWrapper(localName = "cambiopruebaAWS", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.CambiopruebaAWS")
+    @ResponseWrapper(localName = "cambiopruebaAWSResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.CambiopruebaAWSResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/cambiopruebaAWSRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/cambiopruebaAWSResponse")
+    public String cambiopruebaAWS(
+        @WebParam(name = "pruebaaws", targetNamespace = "")
+        PruebaAws pruebaaws);
 
     /**
      * 
@@ -68,5 +234,68 @@ public interface WSGestionFormulario {
     public Boolean addEconomia(
         @WebParam(name = "economia", targetNamespace = "")
         EconomiaLote economia);
+
+    /**
+     * 
+     * @param form
+     * @param us
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "registarFormulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistarFormulario")
+    @ResponseWrapper(localName = "registarFormularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistarFormularioResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/registarFormularioRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/registarFormularioResponse")
+    public Boolean registarFormulario(
+        @WebParam(name = "us", targetNamespace = "")
+        User us,
+        @WebParam(name = "form", targetNamespace = "")
+        FormularioIds form);
+
+    /**
+     * 
+     * @param user
+     * @return
+     *     returns java.util.List<ec.com.desgo.servicios.FormularioIds>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarFormularios", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormularios")
+    @ResponseWrapper(localName = "listarFormulariosResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormulariosResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormulariosRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormulariosResponse")
+    public List<FormularioIds> listarFormularios(
+        @WebParam(name = "user", targetNamespace = "")
+        User user);
+
+    /**
+     * 
+     * @param user
+     * @return
+     *     returns java.util.List<ec.com.desgo.servicios.FormularioIds>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarFormulariosId", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormulariosId")
+    @ResponseWrapper(localName = "listarFormulariosIdResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ListarFormulariosIdResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormulariosIdRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/listarFormulariosIdResponse")
+    public List<FormularioIds> listarFormulariosId(
+        @WebParam(name = "user", targetNamespace = "")
+        int user);
+
+    /**
+     * 
+     * @param name
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "hello", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.Hello")
+    @ResponseWrapper(localName = "helloResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.HelloResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionFormulario/helloRequest", output = "http://servicios.desgo.com.ec/WSGestionFormulario/helloResponse")
+    public String hello(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
 
 }

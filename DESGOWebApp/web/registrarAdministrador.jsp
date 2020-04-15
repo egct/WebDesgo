@@ -75,7 +75,18 @@
                                         <input type="hidden" name="name" value="<%=n%>">
                                         <input type="hidden" name="empresa" value="<%=e%>">
                                         <a class="gn-icon gn-icon-archive">
-                                            <input type="submit" style="border: 0;width:80%;" value="Formulario">
+                                            <input type="submit" style="border: 0;width:80%;" value="Mis Formularios">
+                                        </a>
+                                    </form>
+                                </li>
+                                
+                                <li>
+                                    <form action="DesgoS?a=d65b1910633f1549f818bd804a2f10882ed36026" method="post">
+                                        <input type="hidden" name="idUser" value="<%=id%>">
+                                        <input type="hidden" name="name" value="<%=n%>">
+                                        <input type="hidden" name="empresa" value="<%=e%>">
+                                        <a class="gn-icon gn-icon-archive">
+                                            <input type="submit" style="border: 0;width:80%;" value="Asignar Formularios">
                                         </a>
                                     </form>
                                 </li>

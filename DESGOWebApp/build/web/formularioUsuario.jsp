@@ -3,13 +3,16 @@
     <head>
 
         <meta http-equiv="content-type" content="text/html; utf-8">
-        <%@page import="ec.com.desgo.modelo.UserService"%>
-        <%@page import="ec.com.desgo.controlador.DesgoS"%>
+        <%@page import="java.util.List"%>
+        <%@page import="java.util.ArrayList"%>
+        <%@page import="ec.com.desgo.modelo.*"%>
+        <%@page import="ec.com.desgo.controlador.*"%>
+        <%@page import="ec.com.desgo.servicios.*"%>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
         <title>DESGO Website Menu</title>
         <link rel="icon" type="image/png" href="Login/images/icons/Desgo.ico"/>
-        <meta name="description" content="DESGO website" />
-        <meta name="keywords" content="desgo" />
+        <meta name="description" content="A sidebar menu as seen on the DESGO website" />
+        <meta name="keywords" content="Desgo menu" />
         <meta name="author" content="Desgo" />
         <!--Estilo general de la pagina-->
         <link rel="stylesheet" type="text/css" href="Formulario/css/normalize.css" />
@@ -85,6 +88,8 @@
             String n = request.getParameter("name");
             String e = request.getParameter("empresa");
             String t = request.getParameter("tipo");
+            String IdFormulario = request.getParameter("IdFormulario");
+            String IdFormulario_IU = request.getParameter("formIds_IU");
         %>
         <!--Script para hacer la transicion entre las pestañas-->
         <script>
@@ -344,16 +349,17 @@
                                 </form>
                                 </li>
                                 <li>
-                                    <form action="DesgoS?a=d92837bb331591b05aac92e158bd2902d6fcc4ea" method="post">
+                                    <form action="DesgoS?a=30bfa040d6820b49c35db8bff22f0017a13b462e" method="post">
                                         <input type="hidden" name="idUser" value="<%=id%>">
                                         <input type="hidden" name="name" value="<%=n%>">
                                         <input type="hidden" name="empresa" value="<%=e%>">
                                         <input type="hidden" name="tipo" value="<%=t%>">
                                         <a class="gn-icon gn-icon-archive">
-                                            <input type="submit" style="border: 0;width:80%;" value="Formulario">
+                                            <input type="submit" style="border: 0;width:80%;" value="Mis Formularios">
                                         </a>
                                     </form>
                                 </li>
+
 
                                 <!--Una especie de manual de usuario o contactos que puedan ayudar al usuario-->
                                 <li>
@@ -378,7 +384,6 @@
                                         </a>
                                     </form>                                    
                                 </li> 
-                                <br>
 
                             </ul>
                         </div>
@@ -531,13 +536,41 @@
 
             <!--Formulario donde se encuentran cada una de las secciones que se muestran en las pestanias-->    
             <div>
-                <a name="tab" ></a><br> 
+                <a name="tab" >
+
+                </a>
+                <br> 
                 <br>
             </div>
-            <form class="formulario" method="POST" action="Controlador?action=Formulario">
+            <Center>
+                <h1 style="color: black;">Formulario: <%=request.getParameter("codigoF")%> </h1>
+            </Center>  
+            <form class="formulario" id="formularioActual" name="formularioActual" method="POST" action="DesgoS?a=68adb34bce0e3a1dba5c25b1ce3e0d307b62352d81fa508c668965f8083ba68e">
+                <input type="hidden" name="idUser" value="<%=id%>">
+                <input type="hidden" name="name" value="<%=n%>">
+                <input type="hidden" name="empresa" value="<%=e%>">
+                <input type="hidden" name="tipo" value="<%=t%>">
+                <input type="hidden" name="IdFormulario" value="<%=IdFormulario%>">
+                <input type="hidden" name="IdFormulario_IU" value="<%=IdFormulario_IU%>">
 
+                <input type="hidden" name="codigoF" value="<%=request.getParameter("codigoF")%>">
+                <%
+                    String codigo = request.getParameter("codigoF");
+                    FormService serviceF = new FormService();
+                    FormularioIds formId = new FormularioIds();
+                    formId.setIdFormulario(Integer.parseInt(IdFormulario));
+                    formId.setCodigoF(Integer.parseInt(codigo));
+                    formId.setIdentificacionUF(Integer.parseInt(IdFormulario_IU));
+
+                    User us = new User();
+                    us.setIDUSUARIO(Integer.parseInt(id));
+
+                    Formulario form = serviceF.listarFormulario(us, formId);
+                    //form.getIdentificacionUF().getCLAVECATASTRALANTIGUOIULOTE()
+
+
+                %>
                 <div class="secciones">
-
 
                     <!--Primera seccion de la identificacion de la ubicacion del lote-->              
                     <article id="tab1" >
@@ -546,6 +579,13 @@
                         <h5>Clave catastral anterior: </h5>
                         <br>
                         <center>
+                            <table class="gentab" style="width: 80%">
+                                <tr>
+                                    <th ><input style="font-size:15px;" name="IU_cca_pro1" id="IU_cca_pro1" maxlength="34" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
+                                                event.returnValue = false;" value="<%=form.getIdentificacionUF().getCLAVECATASTRALANTIGUOIULOTE()%>"></th>
+                                </tr>
+                            </table>
+                            <br>
                             <table class="gentab" style="width: 80%">
                                 <tr>
                                     <td style="border-left:hidden;border-right: hidden;border-top:hidden"> </td>
@@ -567,43 +607,6 @@
                                     <th >UN</th>
                                 </tr>
                                 <tr>
-                                    <th ><input id="IU_cca_pro1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_pro2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;" ></th>
-                                    <th ><input  id="IU_cca_can1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_can2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_par1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_par2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_zon1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_zon2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_sec1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_sec2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_man1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_man2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_pre1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_pre2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_ph1" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_ph2" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-                                    <th ><input  id="IU_cca_ph3" maxlength="2" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;"></th>
-
-                                </tr>
-                                <tr>
                                     <td colspan="2"> PRO </td>
                                     <td colspan="2"> CAN </td>
                                     <td colspan="2"> PAR </td>
@@ -612,8 +615,8 @@
                                     <td colspan="2"> MAN </td>
                                     <td colspan="2"> PRE </td>
                                     <td colspan="3"> P.H. </td>
-
                                 </tr>
+
                             </table>
                         </center>
                         <br>
@@ -623,8 +626,8 @@
                         <center>
                             <table class="gentab"  >
                                 <tr>
-                                    <th colspan="10" ><input id="IU_ccu"  maxlength="26" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;" ></th>
+                                    <th colspan="10" ><input style="font-size:15px;" name="IU_ccu" id="IU_ccu"  maxlength="26" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
+                                                event.returnValue = false;" value="<%=form.getIdentificacionUF().getCLAVECATASTRALNUEVOIULOTE()%>"></th>
 
                                 </tr>
                                 <tr>
@@ -647,8 +650,8 @@
                         <center>
                             <table class="gentab" style="width: 30%;height: 100%">
                                 <tr>
-                                    <th ><input id="IU_np"  maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
-                                                event.returnValue = false;" ></th>
+                                    <th ><input style="font-size:15px;" name="IU_np" id="IU_np"  maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57)
+                                                event.returnValue = false;" value="<%=form.getIdentificacionUF().getNUMEROPREDIOIULOTE()%>"></th>
                                 </tr>
                             </table>
                             <br>
@@ -658,12 +661,12 @@
                         <br>
                         <section class="form-group">
                             <ul class="form-fields">
-                                <li><label >Nombre del sector:</label><input type="text" id="IU_dd_nsec" placeholder="Nombre del sector" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;" > </li>
-                                <li><label>Nombre del edificio:</label><input type="text" id="IU_dd_nedi" placeholder="Nombre del edificio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
-                                <li><label >Uso del predio:</label><input type="text" id="IU_dd_usop" placeholder="Uso del predio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
+                                <li><label >Nombre del sector:</label><input type="text" name="IU_dd_nsec" id="IU_dd_nsec" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getNOMBRESECTORDDPLOTE()%>"> </li>
+                                <li><label>Nombre del edificio:</label><input type="text" name="IU_dd_nedi" id="IU_dd_nedi" placeholder="Nombre del edificio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getNOMBREEDIFICIODDPLOTE()%>"> </li>
+                                <li><label >Uso del predio:</label><input type="text" name="IU_dd_usop" id="IU_dd_usop" placeholder="Uso del predio" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getUSOPREDIODDPLOTE()%>"> </li>
                                 <li><label>Tipo de predio</label> </li>
                             </ul>  
 
@@ -676,6 +679,19 @@
                                 <label for="IU_dd_urb">Urbano</label>
                                 <input type="radio" name="diclote" id="IU_dd_rur">
                                 <label for="IU_dd_rur">Rural</label>
+                                <script>
+
+                                    var banderaTipoP = "<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getTIPOPREDIODDPLOTE()%>";
+                                    console.log(banderaTipoP);
+                                    switch (banderaTipoP) {
+                                        case "Urbano":
+                                            document.getElementById("IU_dd_urb").checked = true;
+                                            break;
+                                        case "Rural":
+                                            document.getElementById("IU_dd_rur").checked = true;
+                                            break;
+                                    }
+                                </script>
                             </div>
                         </center>
 
@@ -692,22 +708,41 @@
                                 <input type="radio" name="tenencia" id="IU_dd_ph">
                                 <label for="IU_dd_ph">Popiedad Horizontal</label>
                                 <input type="radio" name="tenencia" id="IU_dd_op">
-                                <label for="IU_dd_op">OP-Copropiedad (DER-ACC)</label> 
+                                <label for="IU_dd_op">OP-Copropiedad (DER-ACC)</label>
+                                <script>
+
+                                    var banderaTenencia = "<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getREGIMENTENECIADDPLOTE()%>";
+                                    console.log(banderaTenencia);
+                                    switch (banderaTenencia) {
+                                        case "Unipropiedad":
+                                            document.getElementById("IU_dd_uni").checked = true;
+                                            break;
+                                        case "Popiedad Horizontal":
+                                            document.getElementById("IU_dd_ph").checked = true;
+                                            break;
+                                        case "OP-Copropiedad (DER-ACC)":
+                                            document.getElementById("IU_dd_op").checked = true;
+                                            break;
+                                    }
+                                </script>
                             </div> <br><br>
                         </center>
                         <h5>Direccion</h5><br><br>
                         <section class="form-group">
                             <ul class="form-fields">
-                                <li><label >Calle principal: </label><input type="text" id="IU_d_callep" placeholder="Calle Principal" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
-                                <li><label>No:</label><input type="text" id="IU_d_no" placeholder="No de direccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
-                                <li><label >Intersección:</label><input type="text" id="IU_d_inter" placeholder="Interseccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
-                                            event.returnValue = false;"> </li>
+                                <li><label >Calle principal: </label><input type="text" name="IU_d_callep" id="IU_d_callep" placeholder="Calle Principal" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getDDPLote().getCALLEPDLOTE()%>"> </li>
+                                <li><label>No:</label><input type="text" name="IU_d_no" id="IU_d_no" placeholder="No de direccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getDDPLote().getNODLOTE()%>"> </li>
+                                <li><label >Intersección:</label><input type="text" name="IU_d_inter" id="IU_d_inter" placeholder="Interseccion" class="text-input" onKeypress="if ((event.keyCode < 65 || event.keyCode > 90) && (event.keyCode < 97 || event.keyCode > 122) && event.keyCode !== 32 && event.keyCode !== 241 && event.keyCode !== 209 && (event.keyCode < 45 || event.keyCode > 57))
+                                            event.returnValue = false;" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getDDPLote().getINTERSECCIONDLOTE()%>"> </li>
 
                             </ul>  
 
                         </section><br><br>
+                        <input type="hidden" name="IdDDescriptivospredio" value="<%=form.getIdentificacionUF().getIDDDPLOTE()%>">
+                        <input type="hidden" name="IdDireccion" value="<%=form.getIdentificacionUF().getDDescriptivosPredioIULote().getIDDLOTE()%>">
+
                     </article>
 
                     <!--Segunda seccion de la identificacion legal del lote-->
@@ -1816,7 +1851,7 @@
 
                                 <article id="tabB">
                                     <style type="text/css">
-                                        #submit {
+                                        #submitEM, #submitBC{
                                             margin-top:5%;
                                             cursor:pointer;
                                             width:30%;
@@ -1828,16 +1863,38 @@
                                             font-size:100%;
                                             color:#ffffff;
                                         }
+                                        #submitAM {
+                                            margin-top:5%;
+                                            cursor:pointer;
+                                            width:30%;
+                                            height:10%;
+                                            background:#0489B1;
+                                            border:2px solid #f6f6f6;
+                                            padding:10px;
+                                            margin-top:5px;
+                                            font-size:100%;
+                                            color:#ffffff;
+                                        }
 
-                                    </style><center>
-                                        <input id="submit" type="submit" value="Enviar "class="botonform">
-                                        <input id="submit" type="reset" value="Borrar " class="botonform">
+                                    </style>
+                                    <center>
+                                        <input id="submitEM" type="submit" value="Enviar modificación"class="botonform" disabled="true" onclick="enviarCambios()">
+                                        <input id="submitBC" type="reset" value="Borrar Cambios" class="botonform" disabled="true">
+                                        <input id="submitAM" type="button" value="Activar modificación"  onclick="activarModificacion()">
                                     </center>    
                                 </article>
                             </div>
 
 
-                            </form>    
+                            </form>  
+                            <iframe name="null" style="display: none;"></iframe>
+                            <script>
+                                function enviarCambios() {
+                                    document.formularioActual.target = "null";
+                                    document.formularioActual.submit();
+                                    alert("Formulario modificado satisfactoriamente");
+                                }
+                            </script>
                             </div><!-- /container -->      
                             <script>
                                 new gnMenu(document.getElementById('gn-menu'));
@@ -1845,7 +1902,29 @@
                                 var name = "<%=request.getParameter("name")%>";
                                 console.log("iduser" + idUser + "name" + name);
                             </script>
+                            <script>
+                                /*****activarModificacion de botones para el envio del formulario******/
+                                function activarModificacion() {
+                                    if (document.getElementById("submitEM").disabled === true) {
+                                        document.getElementById("submitAM").value = "Desactivar modificación";
+                                        document.getElementById("submitEM").disabled = false;
+                                        document.getElementById("submitBC").disabled = false;
+                                        document.getElementById("submitEM").style.backgroundColor = '#088A08';
+                                        document.getElementById("submitBC").style.backgroundColor = '#8A0808';
+                                        document.getElementById("submitAM").style.backgroundColor = '#666666';
 
+                                    } else {
+                                        document.getElementById("submitAM").value = "Activar modificación";
+                                        document.getElementById("submitEM").disabled = true;
+                                        document.getElementById("submitBC").disabled = true;
+                                        document.getElementById("submitEM").style.backgroundColor = '#666666';
+                                        document.getElementById("submitBC").style.backgroundColor = '#666666';
+                                        document.getElementById("submitAM").style.backgroundColor = '#0489B1';
+                                    }
+                                }
+
+
+                            </script>
                             </body>
                             <footer style="width:100%; max-width:100%; margin: 0px auto; position: relative; text-align: justify; ">
                                 <div class="container-footer-all" style="width: 100%">
