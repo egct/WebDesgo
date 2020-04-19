@@ -167,18 +167,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="buscarPersona">
-<xs:sequence>
-<xs:element name="iduser" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="buscarPersonaResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:user" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="registrarFormulario">
 <xs:sequence>
 <xs:element name="form" type="tns:formulario" minOccurs="0"/>
@@ -298,6 +286,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="buscarPersona">
+<xs:sequence>
+<xs:element name="iduser" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarPersonaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:user" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="editarUsuario">
 <xs:sequence>
 <xs:element name="usuario" type="tns:user" minOccurs="0"/>
@@ -334,18 +334,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="editarPersona">
-<xs:sequence>
-<xs:element name="persona" type="tns:persona" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="editarPersonaResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="Registrar">
 <xs:sequence>
 <xs:element name="dni" type="xs:string" minOccurs="0"/>
@@ -359,6 +347,18 @@
 <xs:complexType name="RegistrarResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPersona">
+<xs:sequence>
+<xs:element name="persona" type="tns:persona" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPersonaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 

@@ -54,6 +54,8 @@ public class ObjectFactory {
     private final static QName _ListarFormulariosId_QNAME = new QName("http://servicios.desgo.com.ec/", "listarFormulariosId");
     private final static QName _ListarFormulariosIdResponse_QNAME = new QName("http://servicios.desgo.com.ec/", "listarFormulariosIdResponse");
     private final static QName _ListarFormulariosResponse_QNAME = new QName("http://servicios.desgo.com.ec/", "listarFormulariosResponse");
+    private final static QName _ListarTodosFormulariosExp_QNAME = new QName("http://servicios.desgo.com.ec/", "listarTodosFormulariosExp");
+    private final static QName _ListarTodosFormulariosExpResponse_QNAME = new QName("http://servicios.desgo.com.ec/", "listarTodosFormulariosExpResponse");
     private final static QName _RegistarFormulario_QNAME = new QName("http://servicios.desgo.com.ec/", "registarFormulario");
     private final static QName _RegistarFormularioResponse_QNAME = new QName("http://servicios.desgo.com.ec/", "registarFormularioResponse");
     private final static QName _TesterAcabados_QNAME = new QName("http://servicios.desgo.com.ec/", "testerAcabados");
@@ -304,6 +306,22 @@ public class ObjectFactory {
      */
     public ListarFormulariosResponse createListarFormulariosResponse() {
         return new ListarFormulariosResponse();
+    }
+
+    /**
+     * Create an instance of {@link ListarTodosFormulariosExp }
+     * 
+     */
+    public ListarTodosFormulariosExp createListarTodosFormulariosExp() {
+        return new ListarTodosFormulariosExp();
+    }
+
+    /**
+     * Create an instance of {@link ListarTodosFormulariosExpResponse }
+     * 
+     */
+    public ListarTodosFormulariosExpResponse createListarTodosFormulariosExpResponse() {
+        return new ListarTodosFormulariosExpResponse();
     }
 
     /**
@@ -790,6 +808,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://servicios.desgo.com.ec/", name = "listarFormulariosResponse")
     public JAXBElement<ListarFormulariosResponse> createListarFormulariosResponse(ListarFormulariosResponse value) {
         return new JAXBElement<ListarFormulariosResponse>(_ListarFormulariosResponse_QNAME, ListarFormulariosResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarTodosFormulariosExp }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://servicios.desgo.com.ec/", name = "listarTodosFormulariosExp")
+    public JAXBElement<ListarTodosFormulariosExp> createListarTodosFormulariosExp(ListarTodosFormulariosExp value) {
+        return new JAXBElement<ListarTodosFormulariosExp>(_ListarTodosFormulariosExp_QNAME, ListarTodosFormulariosExp.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarTodosFormulariosExpResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://servicios.desgo.com.ec/", name = "listarTodosFormulariosExpResponse")
+    public JAXBElement<ListarTodosFormulariosExpResponse> createListarTodosFormulariosExpResponse(ListarTodosFormulariosExpResponse value) {
+        return new JAXBElement<ListarTodosFormulariosExpResponse>(_ListarTodosFormulariosExpResponse_QNAME, ListarTodosFormulariosExpResponse.class, null, value);
     }
 
     /**

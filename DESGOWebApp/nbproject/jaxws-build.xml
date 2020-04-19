@@ -28,8 +28,8 @@
     </target>
     <target name="wsimport-client-WSGestionUsuario" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/WSGestionUsuario"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WSGestionUsuario" destdir="${build.generated.dir}/jax-wsCache/WSGestionUsuario" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionUsuario/wsdl/amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionUsuario/wsdl/amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WSGestionUsuario" destdir="${build.generated.dir}/jax-wsCache/WSGestionUsuario" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionUsuario/wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionUsuario/wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/WSGestionUsuario"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
@@ -44,8 +44,8 @@
     </target>
     <target name="wsimport-client-WSGestionFormulario" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/WSGestionFormulario"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WSGestionFormulario" destdir="${build.generated.dir}/jax-wsCache/WSGestionFormulario" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionFormulario/wsdl/amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionFormulario/wsdl/amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WSGestionFormulario" destdir="${build.generated.dir}/jax-wsCache/WSGestionFormulario" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionFormulario/wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/WSGestionFormulario/wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/WSGestionFormulario"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">

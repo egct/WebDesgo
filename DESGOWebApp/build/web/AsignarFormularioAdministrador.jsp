@@ -173,7 +173,27 @@
                 <center>
                     <div class="titulo">Formularios</div>
                 </center>
+                <table style="background: #b2dba1; border: 2px solid black;">
+                    <tr>
+                        <td>
+                            <label style="margin: 50%;">
+                                <form action="#" method="post">
+                                    <input type="hidden" name="idUser" value="<%=id%>">
+                                    <input type="hidden" name="name" value="<%=n%>">
+                                    <input type="hidden" name="empresa" value="<%=e%>">
+                                    <input type="hidden" name="tipo" value="<%=t%>">
+                                    
+                                    <a class="gn-icon gn-icon-download" style="margin-right: 25px;">
+                                        <input type="submit" style="border: 0;" value="Descargar DB">
+                                    </a>
+                                </form>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
 
+                <br>
+                <br>
                 <div id="pestanas">
                     <ul id=lista>
                         <li id="pestana2"><a href='javascript:cambiarPestanna(pestanas,pestana2);'>Cargar</a></li>
@@ -259,7 +279,16 @@
                         <article class="contenedorP" >
                             <article class="partes" > 
                                 <h2>Formularios</h2><br>
-                                <a href="#miModalAddP" class="botonDelete">Eliminar formularios</a>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="#miModalAddP" class="botonDelete">Eliminar formularios</a>
+                                        </td>
+                                        <td>
+                                            <a href="#miModalAddU" class="botonAdd">Exportar formularios</a>                                            
+                                        </td>
+                                    </tr>
+                                </table>
                                 <center>
                                     <br>
                                     <hr>
@@ -447,7 +476,7 @@
                             </tr>
                             <%
                                 List<HashMapClassForm> dataUpdateForm = formSer.listTodosFormIds(e);
-                                estadoFormularioA="";
+                                estadoFormularioA = "";
                                 for (HashMapClassForm cus : dataUpdateForm) {
                                     if (cus.getForm().getEstadoF() == 0) {
                                         estadoFormularioA = "No Actualizado";
@@ -469,7 +498,30 @@
                     </form>
                 </div>
             </div>  
-        </div>                
+        </div>     
+
+        <div id="miModalAddU" class="modal">
+            <div class="modal-contenido">
+                <a class="botoncerrar" href="#" style="">X</a>
+                <center><h2>Tipo de archivo</h2></center>
+                <div class="cssdiv">
+                    <br>
+                    <label for="UU_TipoArchivo">Seleccione una tipo de archivo</label>
+                    <select class="cssinput" type="text" name="UU_TipoArchivo" id="UU_TipoArchivo" required>
+                        <option value="Excel">Excel</option>
+                        <option value="Txt">Txt</option>
+                        <option value="Xml">Xml</option>
+                    </select>
+                    <label>Empresa:</label>
+                    <input class="cssinput" type="text" name="UU_Empresa" id="UU_Empresa"  value="<%=e%>" disabled="true">                        
+                    <label>Nombre del Archivo:</label>
+                    <input class="cssinput" type="text" name="UU_NombreArchivo" id="UU_NombreArchivo"  required>                        
+                    <div>
+                        <input onclick="tipoDescarga('UU_TipoArchivo', 'formulariosList', 'UU_NombreArchivo')" class="cssinput" type="submit" value="Descargar">
+                    </div>
+                </div>
+            </div>  
+        </div>
 
         <script>
             var table = document.getElementById("tablePersonas")
@@ -501,6 +553,52 @@
                     {
                         checkboxes[i].checked = source.checked; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
                     }
+                }
+            }
+
+            function tipoDescarga(tipodescarga, tableID, inputname) {
+                var tipo = document.getElementById(tipodescarga).value;
+                var filename = document.getElementById(inputname).value;
+                switch (tipo) {
+                    case 'Excel':
+                        exportTableToExcel(tableID, filename);
+                        break;
+                    case 'Txt':
+                        alert("Tipo: Txt, Nombre archivo: " + filename);
+                        break;
+                    case 'Xml':
+                        alert("Tipo: Xml, Nombre archivo: " + filename);
+                        break;
+                }
+            }
+            function exportTableToExcel(tableID, filename) {
+                var downloadLink;
+                var dataType = 'application/vnd.ms-excel';
+                var tableSelect = document.getElementById(tableID);
+                var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+                // Specify file name
+                filename = filename ? filename + '.xls' : 'Desgo_excel_data.xls';
+
+                // Create download link element
+                downloadLink = document.createElement("a");
+
+                document.body.appendChild(downloadLink);
+
+                if (navigator.msSaveOrOpenBlob) {
+                    var blob = new Blob(['ufeff', tableHTML], {
+                        type: dataType
+                    });
+                    navigator.msSaveOrOpenBlob(blob, filename);
+                } else {
+                    // Create a link to the file
+                    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+                    // Setting the file name
+                    downloadLink.download = filename;
+
+                    //triggering the function
+                    downloadLink.click();
                 }
             }
         </script>

@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WSGestionUsuario", targetNamespace = "http://servicios.desgo.com.ec/", wsdlLocation = "http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl")
+@WebServiceClient(name = "WSGestionUsuario", targetNamespace = "http://servicios.desgo.com.ec/", wsdlLocation = "http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl")
 public class WSGestionUsuario_Service
     extends Service
 {
@@ -30,7 +30,7 @@ public class WSGestionUsuario_Service
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl");
+            url = new URL("http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

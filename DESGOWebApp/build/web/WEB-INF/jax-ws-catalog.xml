@@ -12,4 +12,8 @@
     <system systemId="http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?xsd=1" uri="wsdl/amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.xsd_1.xsd"/>
     <system systemId="http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl" uri="wsdl/amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl"/>
     <system systemId="http://amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?xsd=1" uri="wsdl/amazonwebservicedesgo-env.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.xsd_1.xsd"/>
+    <system systemId="http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?wsdl" uri="wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.wsdl"/>
+    <system systemId="http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionUsuario?xsd=1" uri="wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionUsuario.xsd_1.xsd"/>
+    <system systemId="http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?wsdl" uri="wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.wsdl"/>
+    <system systemId="http://amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com:80/WSGestionFormulario?xsd=1" uri="wsdl/amazonwebservicedesgo-env.eba-gbkikqgc.us-east-1.elasticbeanstalk.com_80/WSGestionFormulario.xsd_1.xsd"/>
 </catalog>

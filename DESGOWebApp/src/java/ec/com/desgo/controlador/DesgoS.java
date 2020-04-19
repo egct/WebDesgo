@@ -37,6 +37,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.oreilly.servlet.MultipartRequest;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Part;
+import javax.swing.JFileChooser;
 import org.apache.poi.ss.usermodel.DataFormatter;
 
 /**
@@ -664,6 +665,21 @@ public class DesgoS extends HttpServlet {
                     user.setTipoUsuario(tipou);
                     userS.editarUsuario(user);
                     acceso = "Administrador.jsp";
+                    break;
+                /**
+                 * *DescargarDb***
+                 */
+                case "descargardb":
+                    id = request.getParameter("idUser");
+                    n = request.getParameter("name");
+                    em = request.getParameter("empresa");
+                    t = request.getParameter("tipo");
+                    request.setAttribute("idUser", id);
+                    request.setAttribute("name", n);
+                    request.setAttribute("empresa", em);
+                    request.setAttribute("tipo", t);
+
+                    acceso = "AsignarFormularioAdministrador.jsp";
                     break;
 
             }

@@ -45,6 +45,87 @@ public interface WSGestionUsuario {
 
     /**
      * 
+     * @param form
+     * @param user
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "registrarFormulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarFormulario")
+    @ResponseWrapper(localName = "registrarFormularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarFormularioResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarFormularioRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarFormularioResponse")
+    public Boolean registrarFormulario(
+        @WebParam(name = "form", targetNamespace = "")
+        Formulario form,
+        @WebParam(name = "user", targetNamespace = "")
+        User user);
+
+    /**
+     * 
+     * @param pass
+     * @param privilegio
+     * @param dni
+     * @return
+     *     returns ec.com.desgo.servicios.Empleado
+     */
+    @WebMethod(operationName = "Validar")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "Validar", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.Validar")
+    @ResponseWrapper(localName = "ValidarResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ValidarResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/ValidarRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/ValidarResponse")
+    public Empleado validar(
+        @WebParam(name = "dni", targetNamespace = "")
+        String dni,
+        @WebParam(name = "pass", targetNamespace = "")
+        String pass,
+        @WebParam(name = "privilegio", targetNamespace = "")
+        String privilegio);
+
+    /**
+     * 
+     * @param apellidos
+     * @param pass
+     * @param privilegio
+     * @param dni
+     * @param nombres
+     * @return
+     *     returns java.lang.String
+     */
+    @WebMethod(operationName = "Registrar")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "Registrar", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.Registrar")
+    @ResponseWrapper(localName = "RegistrarResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/RegistrarRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/RegistrarResponse")
+    public String registrar(
+        @WebParam(name = "dni", targetNamespace = "")
+        String dni,
+        @WebParam(name = "pass", targetNamespace = "")
+        String pass,
+        @WebParam(name = "apellidos", targetNamespace = "")
+        String apellidos,
+        @WebParam(name = "nombres", targetNamespace = "")
+        String nombres,
+        @WebParam(name = "privilegio", targetNamespace = "")
+        String privilegio);
+
+    /**
+     * 
+     * @param user
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "registrarUser", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarUser")
+    @ResponseWrapper(localName = "registrarUserResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarUserResponse")
+    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarUserRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarUserResponse")
+    public Boolean registrarUser(
+        @WebParam(name = "user", targetNamespace = "")
+        User user);
+
+    /**
+     * 
      * @param iduser
      * @return
      *     returns ec.com.desgo.servicios.User
@@ -174,86 +255,5 @@ public interface WSGestionUsuario {
     public boolean editarUsuario(
         @WebParam(name = "usuario", targetNamespace = "")
         User usuario);
-
-    /**
-     * 
-     * @param form
-     * @param user
-     * @return
-     *     returns java.lang.Boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "registrarFormulario", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarFormulario")
-    @ResponseWrapper(localName = "registrarFormularioResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarFormularioResponse")
-    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarFormularioRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarFormularioResponse")
-    public Boolean registrarFormulario(
-        @WebParam(name = "form", targetNamespace = "")
-        Formulario form,
-        @WebParam(name = "user", targetNamespace = "")
-        User user);
-
-    /**
-     * 
-     * @param pass
-     * @param privilegio
-     * @param dni
-     * @return
-     *     returns ec.com.desgo.servicios.Empleado
-     */
-    @WebMethod(operationName = "Validar")
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "Validar", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.Validar")
-    @ResponseWrapper(localName = "ValidarResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.ValidarResponse")
-    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/ValidarRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/ValidarResponse")
-    public Empleado validar(
-        @WebParam(name = "dni", targetNamespace = "")
-        String dni,
-        @WebParam(name = "pass", targetNamespace = "")
-        String pass,
-        @WebParam(name = "privilegio", targetNamespace = "")
-        String privilegio);
-
-    /**
-     * 
-     * @param apellidos
-     * @param pass
-     * @param privilegio
-     * @param dni
-     * @param nombres
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod(operationName = "Registrar")
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "Registrar", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.Registrar")
-    @ResponseWrapper(localName = "RegistrarResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarResponse")
-    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/RegistrarRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/RegistrarResponse")
-    public String registrar(
-        @WebParam(name = "dni", targetNamespace = "")
-        String dni,
-        @WebParam(name = "pass", targetNamespace = "")
-        String pass,
-        @WebParam(name = "apellidos", targetNamespace = "")
-        String apellidos,
-        @WebParam(name = "nombres", targetNamespace = "")
-        String nombres,
-        @WebParam(name = "privilegio", targetNamespace = "")
-        String privilegio);
-
-    /**
-     * 
-     * @param user
-     * @return
-     *     returns java.lang.Boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "registrarUser", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarUser")
-    @ResponseWrapper(localName = "registrarUserResponse", targetNamespace = "http://servicios.desgo.com.ec/", className = "ec.com.desgo.servicios.RegistrarUserResponse")
-    @Action(input = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarUserRequest", output = "http://servicios.desgo.com.ec/WSGestionUsuario/registrarUserResponse")
-    public Boolean registrarUser(
-        @WebParam(name = "user", targetNamespace = "")
-        User user);
 
 }

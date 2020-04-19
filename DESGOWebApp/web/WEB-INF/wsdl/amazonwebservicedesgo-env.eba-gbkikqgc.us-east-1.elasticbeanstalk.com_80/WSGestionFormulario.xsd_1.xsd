@@ -60,6 +60,10 @@
 
 <xs:element name="listarFormulariosResponse" type="tns:listarFormulariosResponse"/>
 
+<xs:element name="listarTodosFormulariosExp" type="tns:listarTodosFormulariosExp"/>
+
+<xs:element name="listarTodosFormulariosExpResponse" type="tns:listarTodosFormulariosExpResponse"/>
+
 <xs:element name="registarFormulario" type="tns:registarFormulario"/>
 
 <xs:element name="registarFormularioResponse" type="tns:registarFormularioResponse"/>
@@ -216,6 +220,18 @@
 <xs:element name="mejora_F" type="xs:int" minOccurs="0"/>
 <xs:element name="responsables_F" type="xs:int" minOccurs="0"/>
 <xs:element name="vivienda_F" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarTodosFormulariosExp">
+<xs:sequence>
+<xs:element name="empresa" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarTodosFormulariosExpResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:formulario" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
