@@ -70,6 +70,7 @@
             String t = request.getParameter("tipo");
             String aux = "aux";
             String banderaForm = request.getParameter("banderaForm");
+            String ColorDinamicoCelda=" ";
         %>
         <!--Script para cargar iduser lista-->
 
@@ -182,7 +183,7 @@
                                     <input type="hidden" name="name" value="<%=n%>">
                                     <input type="hidden" name="empresa" value="<%=e%>">
                                     <input type="hidden" name="tipo" value="<%=t%>">
-                                    
+
                                     <a class="gn-icon gn-icon-download" style="margin-right: 25px;">
                                         <input type="submit" style="border: 0;" value="Descargar DB">
                                     </a>
@@ -293,13 +294,14 @@
                                     <br>
                                     <hr>
                                     <br>
-                                    <table class="tablasP" id="formulariosList">                                           
+                                    <section style="width:100%; height:100%; overflow:auto;">
+                                    <table class="tablasP" id="formulariosList" >                                           
                                         <tr>
                                             <td hidden="">IDFORMULARIO</td>
                                             <td hidden="">IDUSUARIO</td>
                                             <td><h4>Código</h4></td>
                                             <td><h4>Estado</h4></td>
-                                            <td><h4>Usuario</h4></td>
+                                            <td><h4>Asignado a</h4></td>
 
                                         </tr>
                                         <%
@@ -309,8 +311,10 @@
                                             for (HashMapClassForm cus : data) {
                                                 if (cus.getForm().getEstadoF() == 0) {
                                                     estadoFormulario = "No Actualizado";
+                                                    ColorDinamicoCelda="#d3788f";
                                                 } else {
                                                     estadoFormulario = "Actualizado";
+                                                    ColorDinamicoCelda="#b2dba1";
                                                 }
                                         %>
 
@@ -318,15 +322,17 @@
                                             <td hidden=""><%=cus.getForm().getIdFormulario()%></td>
                                             <td hidden=""><%=cus.getUs().getIDUSUARIO()%></td>
                                             <td><%=cus.getForm().getCodigoF()%></td>
-                                            <td><%=estadoFormulario%></td>
+                                            <td bgcolor="<%=ColorDinamicoCelda%>"><%=estadoFormulario%></td>
                                             <td><%=cus.getUs().getUSUARIOUSUARIO()%></td>
                                         </tr>
                                         <%}%>
-
+                                        
                                     </table>
+                                    </section>
                                     <br>
                                     <hr>
                                     <br>
+                                    
                                 </center>
                             </article>
                         </article>
@@ -372,7 +378,11 @@
                                             </tr>
                                             <%contU++;
                                                 }%>
-                                        </table>
+<!--                                            <colgroup>
+                                                <col style="background:lightgrey">
+                                                <col span="2" style="background:lightyellow">
+                                            </colgroup>
+-->                                        </table>
                                     </section>
                                     <br>
                                     <hr>
@@ -392,6 +402,7 @@
             var name = "<%=request.getParameter("name")%>";
             console.log("iduser" + idUser + "name" + name);
         </script>
+        
 
         <div id="miModalAddP" class="modal">
             <div class="modal-contenido">
@@ -416,7 +427,7 @@
                                 <td><h4></h4></td>
                                 <td><h4>Código</h4></td>
                                 <td><h4>Estado</h4></td>
-                                <td><h4>Usuario</h4></td>
+                                <td><h4>Asignado a</h4></td>
 
                             </tr>
                             <%
@@ -425,14 +436,16 @@
                                 for (HashMapClassForm cus : dataDeleteForm) {
                                     if (cus.getForm().getEstadoF() == 0) {
                                         estadoFormularioA = "No Actualizado";
+                                        ColorDinamicoCelda="#d3788f";
                                     } else {
                                         estadoFormularioA = "Actualizado";
+                                        ColorDinamicoCelda="#b2dba1";
                                     }
                             %>
                             <tr style="align-items: center  ">
                                 <td><input type="checkbox" name="formulariosEliminar" value="<%=cus.getForm().getCodigoF() + "-" + cus.getUs().getIDUSUARIO()%>"></td>
                                 <td><label for="formulariosEliminar"> <%=cus.getForm().getCodigoF()%>&nbsp;</label></td>
-                                <td><label for="formulariosEliminar"> <%=estadoFormularioA%>&nbsp;</label></td>
+                                <td bgcolor="<%=ColorDinamicoCelda%>"><label for="formulariosEliminar"> <%=estadoFormularioA%>&nbsp;</label></td>
                                 <td><label for="formulariosEliminar"> <%=cus.getUs().getUSUARIOUSUARIO()%></label></td>
                             </tr>
                             <%}%>
@@ -471,7 +484,7 @@
                                 <td><h4></h4></td>
                                 <td><h4>Código</h4></td>
                                 <td><h4>Estado</h4></td>
-                                <td><h4>Usuario</h4></td>
+                                <td><h4>Asignado a</h4></td>
 
                             </tr>
                             <%
@@ -480,14 +493,16 @@
                                 for (HashMapClassForm cus : dataUpdateForm) {
                                     if (cus.getForm().getEstadoF() == 0) {
                                         estadoFormularioA = "No Actualizado";
+                                        ColorDinamicoCelda="#d3788f";
                                     } else {
                                         estadoFormularioA = "Actualizado";
+                                        ColorDinamicoCelda="#b2dba1";
                                     }
                             %>
                             <tr style="align-items: center  ">
                                 <td><input type="checkbox" name="formulariosAsignar" value="<%=cus.getForm().getIdFormulario()%>"></td>
                                 <td><label for="formulariosAsignar"> <%=cus.getForm().getCodigoF()%>&nbsp;</label></td>
-                                <td><label for="formulariosAsignar"> <%=estadoFormularioA%>&nbsp;</label></td>
+                                <td bgcolor="<%=ColorDinamicoCelda%>"><label for="formulariosAsignar"> <%=estadoFormularioA%>&nbsp;</label></td>
                                 <td><label for="formulariosAsignar"> <%=cus.getUs().getUSUARIOUSUARIO()%></label></td>
                             </tr>
                             <%}%>
@@ -601,6 +616,8 @@
                     downloadLink.click();
                 }
             }
+            
+
         </script>
     </body>
     <footer style="width:100%; max-width:100%; margin: 0px auto; position: relative; text-align: justify; bottom: 0;">

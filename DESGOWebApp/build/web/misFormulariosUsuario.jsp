@@ -60,7 +60,7 @@
             String n = request.getParameter("name");
             String e = request.getParameter("empresa");
             String t = request.getParameter("tipo");
-
+            String ColorDinamicoCelda=" ";
         %>
         <!--Script para cargar iduser lista-->
 
@@ -178,8 +178,10 @@
                                                 for (FormularioIds cus : listformsId) {
                                                     if(cus.getEstadoF()==0){
                                                          estadoFormulario="No Actualizado";
+                                                         ColorDinamicoCelda="#d3788f";
                                                      }else{
                                                          estadoFormulario="Actualizado";
+                                                         ColorDinamicoCelda="#b2dba1";
                                                      }  
 
                                             %>
@@ -187,7 +189,7 @@
                                                 <td id="FC_<%=contU%>0" hidden=""><%=cus.getIdFormulario()%></td>
                                                 <td id="FC_<%=contU%>1" hidden=""><%=cus.getIdUsuarioF()%></td>
                                                 <td id="FC_<%=contU%>2"><%=cus.getCodigoF()%></td>
-                                                <td id="FC_<%=contU%>3"><%=estadoFormulario%></td>
+                                                <td id="FC_<%=contU%>3" bgcolor="<%=ColorDinamicoCelda%>"><%=estadoFormulario%></td>
                                                 <td id="FC_<%=contU%>4">
                                                     <a id="D<%=contU%>">
                                                         <form action="DesgoS?a=d92837bb331591b05aac92e158bd2902d6fcc4ea" method="post">
